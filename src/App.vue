@@ -316,7 +316,7 @@ export default {
       const start = (this.currentPage -1) * this.itemsPerPage;
       const end = this.currentPage * this.itemsPerPage;
       this.data = sortedData.slice(start, end)
-      console.log('load data based on new sort', currentPage)
+      console.log('load data based on new sort', this.currentPage)
     },
 
     updateItemsPerPage: function(itemsPerPage) {
