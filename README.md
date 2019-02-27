@@ -1,7 +1,7 @@
 
 # v-datatable
-[![GitHub open issues](https://img.shields.io/github/issues/aquilesb/v-datatable.svg?maxAge=2592000)](https://github.com/aquilesb/v-datatable/issues)
-[![Npm version](https://img.shields.io/npm/v/v-datatable-light.svg?maxAge=2592000)](https://www.npmjs.com/package/v-datatable-light)
+[![GitHub open issues](https://img.shields.io/github/issues/aquilesb/v-datatable.svg)](https://github.com/aquilesb/v-datatable/issues)
+[![Npm version](https://img.shields.io/npm/v/v-datatable-light.svg)](https://www.npmjs.com/package/v-datatable-light)
 
 ## Usage
 ```HTML
