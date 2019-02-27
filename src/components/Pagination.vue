@@ -1,5 +1,5 @@
 <template>
-  <ul class="data-table-pagination">
+  <ul id="v-data-table-pagination">
     <li
       v-if="showMoveFirstPage"
       class="pagination-item move-first-page"
@@ -67,8 +67,8 @@
     </li>
   </ul>
 </template>
-<style lang="scss" scoped>
-  .data-table-pagination {
+<style>
+  #v-data-table-pagination {
     list-style: none;
     display: flex;
     align-items: center;
@@ -77,33 +77,37 @@
     padding: 0;
     width: 300px;
     height: 30px;
-    .pagination-item {
-      width: 30px;
-      margin-right: 5px;
-      font-size: 16px;
-      transition: color 0.15s ease-in-out;
-      &.selected {
-        color: #ed9b19;
-      }
-      .page-btn {
-        background-color: transparent;
-        outline: none;
-        border: none;
-        color: #337ab7;
-        transition: color 0.15s ease-in-out;
-        &:hover {
-          color: #ed9b19;
-        }
-        &:disabled{
-          cursor: not-allowed;
-          box-shadow: none;
-          opacity: .65;
-        }
-      }
-    }
+  }
+
+  #v-data-table-pagination .pagination-item {
+    width: 30px;
+    margin-right: 5px;
+    font-size: 16px;
+    transition: color 0.15s ease-in-out;
+  }
+
+  #v-data-table-pagination .pagination-item.selected {
+    color: #ed9b19;
+  }
+
+  #v-data-table-pagination .pagination-item .page-btn {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #337ab7;
+    transition: color 0.15s ease-in-out;
+  }
+
+  #v-data-table-pagination .pagination-item .page-btn:hover {
+    color: #ed9b19;
+  }
+
+  #v-data-table-pagination .pagination-item .page-btn:disabled{
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .65;
   }
 </style>
-
 <script>
 export default {
 	name: 'DataTablePagination',

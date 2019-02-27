@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-bordered table-hover table-striped table-center">
+  <table id="v-datatable" class="table table-bordered table-hover table-striped table-center">
     <thead>
       <tr>
         <th
@@ -102,65 +102,76 @@
     </tfoot>
   </table>
 </template>
-<style lang="scss" scoped>
-.header-item {
+<style>
+#v-datatable .header-item {
   cursor: pointer;
   color: #337ab7;
   transition: color 0.15s ease-in-out;
-  &:hover {
-    color: #ed9b19;
-  }
-  &.no-sortable{
-    cursor: default;
-    &:hover {
-      color: #337ab7;
-    }
-  }
-  .th-wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    font-weight: bold;
-    &.checkboxes {
-      justify-content: center;
-    }
-    .arrows-wrapper {
-      display: flex;
-      flex-direction: column;
-      margin-left: 10px;
-      justify-content: space-between;
-      &.centralized {
-        justify-content: center;
-      }
-    }
-  }
 }
-.arrow {
+
+#v-datatable .header-item:hover {
+  color: #ed9b19;
+}
+
+#v-datatable .header-item.no-sortable{
+  cursor: default;
+}
+#v-datatable .header-item.no-sortable:hover {
+  color: #337ab7;
+}
+
+#v-datatable .header-item .th-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+}
+
+#v-datatable .header-item .th-wrapper.checkboxes {
+  justify-content: center;
+}
+
+#v-datatable .header-item .th-wrapper .arrows-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  justify-content: space-between;
+}
+
+#v-datatable .header-item .th-wrapper .arrows-wrapper.centralized {
+  justify-content: center;
+}
+
+#v-datatable .arrow {
   transition: color 0.15s ease-in-out;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  &.up {
-    &:hover {
-      border-bottom: 8px solid #ed9b19;
-    }
-    border-bottom: 8px solid #337ab7;
-  }
-  &.down {
-    &:hover {
-      border-top: 8px solid #ed9b19;
-    }
-    border-top: 8px solid #337ab7;
-  }
 }
-.footer {
+
+#v-datatable .arrow.up {
+  border-bottom: 8px solid #337ab7;
+}
+
+#v-datatable .arrow.up:hover {
+  border-bottom: 8px solid #ed9b19;
+}
+
+#v-datatable .arrow.down {
+  border-top: 8px solid #337ab7;
+}
+
+#v-datatable .arrow.down:hover {
+  border-top: 8px solid #ed9b19;
+}
+
+#v-datatable .footer {
   display: flex;
   justify-content: space-between;
   width: 500px;
 }
 </style>
-
 <script>
 export default {
 	name: 'DataTable',
