@@ -38,7 +38,7 @@
     </DataTable>
   </div>
 </template>
-<style lang="scss" scoped>
+<style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -46,28 +46,29 @@
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
 
-  .title {
-    margin-bottom: 30px;
-  }
+#app .title {
+  margin-bottom: 30px;
+}
 
-  .items-per-page {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    color: #337ab7;
-    label {
-      margin: 0 15px;
-    }
-  }
+#app .items-per-page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #337ab7;
+}
+
+#app .items-per-page label {
+  margin: 0 15px;
 }
 </style>
 
 <script>
 import Spinner from 'vue-simple-spinner'
-import DataTable from './components/DataTable.vue'
-import ItemsPerPageDropdown from './components/ItemsPerPageDropdown.vue'
-import Pagination from './components/Pagination.vue'
+import DataTable from '../src/components/DataTable.vue'
+import ItemsPerPageDropdown from '../src/components/ItemsPerPageDropdown.vue'
+import Pagination from '../src/components/Pagination.vue'
 import orderBy from 'lodash.orderby'
 
 const addZero = value => ("0" + value).slice(-2);
