@@ -1,32 +1,49 @@
 {
   "name": "v-datatable",
   "version": "0.1.0",
+  "description": "A lightweight vue datatable component with no dependencies",
   "main": "dist/v-datatable.umd.min.js",
-  "module": "dist/v-datatable.esm.js",
-  "unpkg": "dist/v-datatable.min.js",
-  "browser": {
-    "./sfc": "src/index.js"
+  "private": false,
+  "author": "Aquiles Boff da Silva <akilesb@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aquilesb/v-datatable/issues"
   },
-  "private": true,
+  "homepage": "https://github.com/aquilesb/v-datatable#readme",
+  "keywords": [
+    "vue",
+    "component",
+    "datatable",
+    "lightweight",
+    "no-dependencies"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aquilesb/v-datatable.git"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "vue-cli-service serve ./example/main.js --open",
+    "build": "vue-cli-service build --name v-datatable --entry ./src/index.js --target lib",
+    "lint": "vue-cli-service lint",
+    "doc:build": "npx vuedoc.md --section API --output ./README.md ./src/index.js",
+    "prepublishOnly": "npm run lint && npm run build && npm run styleguide:build && npm run doc:build",
+    "styleguide": "vue-styleguidist server",
+    "styleguide:build": "vue-styleguidist build"
   },
-  "dependencies": {
-    "vue": "^2.6.6"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.4.0",
     "@vue/cli-service": "^3.4.0",
+    "@vuedoc/md": "^1.5.0",
     "babel-eslint": "^10.0.1",
+    "component-fixture": "^0.4.1",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "lodash.orderby": "^4.6.0",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-component": "^1.10.5",
     "vue-simple-spinner": "^1.2.8",
+    "vue-styleguidist": "^1.7.13",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
@@ -52,5 +69,8 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "peerDependencies": {
+    "vue": "^2.6.6"
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <select
-    class="data-table-items-per-page"
+    id="v-data-table-items-per-page"
     @change="onUpdate"
   >
     <option
@@ -13,16 +13,16 @@
     </option>
   </select>
 </template>
-<style lang="scss" scoped>
-  .data-table-items-per-page {
+<style>
+  #v-data-table-items-per-page {
     background-color: transparent;
     min-height: 30px;
     border: 1px solid #337ab7;
     border-radius: 5px;
     color: #337ab7;
-    &:hover {
-      cursor: pointer;
-    }
+  }
+  #v-data-table-items-per-page :hover {
+    cursor: pointer;
   }
 </style>
 <script>
