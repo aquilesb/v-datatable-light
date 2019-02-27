@@ -5,14 +5,17 @@
 
 ## Usage
 ```HTML
-<VDatatable :text="hello"></VDatatable>
+<DataTable
+  :header-fields="headerFields"
+  :data="data"
+/>
 ```
 ```javascript
-import { VDatatable } from 'v-datatable'
+import { DataTable } from 'v-datatable'
 
 export default {
   components: {
-    VDatatable
+    DataTable
   }
 }
 ```
