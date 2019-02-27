@@ -1,8 +1,8 @@
 {
-  "name": "v-datatable",
+  "name": "v-datatable-light",
   "version": "0.1.0",
   "description": "A lightweight vue datatable component with no dependencies",
-  "main": "dist/v-datatable.umd.min.js",
+  "main": "dist/v-datatable-light.umd.min.js",
   "private": false,
   "author": "Aquiles Boff da Silva <akilesb@gmail.com>",
   "license": "MIT",
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve ./example/main.js --open",
-    "build": "vue-cli-service build --name v-datatable --entry ./src/index.js --target lib",
+    "build": "vue-cli-service build --name v-datatable-light --entry ./src/index.js --target lib",
     "lint": "vue-cli-service lint",
     "prepublishOnly": "npm run lint && npm run build"
   },
