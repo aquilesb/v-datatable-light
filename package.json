@@ -1,7 +1,15 @@
 {
   "name": "v-datatable",
   "version": "0.1.0",
+  "main": "dist/v-datatable.umd.min.js",
   "private": false,
+  "keywords": [
+    "vue",
+    "component",
+    "datatable",
+    "lightweight",
+    "no-dependencies"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve ./example/main.js --open",
     "build": "vue-cli-service build --name v-datatable --entry ./src/index.js --target lib",
@@ -51,21 +59,6 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "files": [
-    "dist/*.css",
-    "dist/*.map",
-    "dist/*.js",
-    "src/*"
-  ],
-  "keywords": [
-    "vue",
-    "component",
-    "datatable",
-    "lightweight",
-    "no-dependencies"
-  ],
-  "main": "dist/v-datatable.umd.min.js",
-  "module": "dist/v-datatable.common.min.js",
   "peerDependencies": {
     "vue": "^2.6.6"
   }
