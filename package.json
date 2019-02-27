@@ -25,10 +25,7 @@
     "serve": "vue-cli-service serve ./example/main.js --open",
     "build": "vue-cli-service build --name v-datatable --entry ./src/index.js --target lib",
     "lint": "vue-cli-service lint",
-    "doc:build": "npx vuedoc.md --section API --output ./README.md ./src/index.js",
-    "prepublishOnly": "npm run lint && npm run build && npm run styleguide:build && npm run doc:build",
-    "styleguide": "vue-styleguidist server",
-    "styleguide:build": "vue-styleguidist build"
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "dependencies": {},
   "devDependencies": {
@@ -43,7 +40,6 @@
     "lodash.orderby": "^4.6.0",
     "vue-cli-plugin-component": "^1.10.5",
     "vue-simple-spinner": "^1.2.8",
-    "vue-styleguidist": "^1.7.13",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
