@@ -1,7 +1,7 @@
 
 # v-datatable
 [![GitHub open issues](https://img.shields.io/github/issues/aquilesds/v-datatable.svg?maxAge=2592000)](https://github.com/aquilesds/v-datatable/issues)
-[![Npm version](https://img.shields.io/npm/v/v-datatable.svg?maxAge=2592000)](https://www.npmjs.com/package/v-datatable)
+[![Npm version](https://img.shields.io/npm/v/v-datatable-light.svg?maxAge=2592000)](https://www.npmjs.com/package/v-datatable-light)
 
 ## Usage
 ```HTML
@@ -11,7 +11,7 @@
 />
 ```
 ```javascript
-import { DataTable } from 'v-datatable'
+import { DataTable } from 'v-datatable-light'
 
 export default {
   components: {
@@ -23,7 +23,7 @@ export default {
 
 ## Installation
 ```
-npm install v-datatable
+npm install v-datatable-light
 ```
 
 ## Project setup
