@@ -1,8 +1,15 @@
 {
   "name": "v-datatable",
   "version": "0.1.0",
+  "description": "A lightweight vue datatable component with no dependencies",
   "main": "dist/v-datatable.umd.min.js",
   "private": false,
+  "author": "Aquiles Boff da Silva <akilesb@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aquilesb/v-datatable/issues"
+  },
+  "homepage": "https://github.com/aquilesb/v-datatable#readme",
   "keywords": [
     "vue",
     "component",
@@ -10,6 +17,10 @@
     "lightweight",
     "no-dependencies"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aquilesb/v-datatable.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve ./example/main.js --open",
     "build": "vue-cli-service build --name v-datatable --entry ./src/index.js --target lib",
