@@ -9,6 +9,7 @@
       :is-loading="isLoading"
       not-found-msg="Items not found"
       @onUpdate="dtUpdateSort"
+      trackBy="firstName"
     >
       <input
         slot="actions"
@@ -265,6 +266,7 @@ export default {
   data: function() {
     return {
       headerFields: [
+        '__slot:checkboxes',
         {
           name: "firstName",
           label: "First Name",
