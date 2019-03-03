@@ -20,6 +20,7 @@ export default {
   }
 }
 ```
+
 ## DataTable Props
 | Field        | Type    | Required | default | Description                                                                                                    |
 |--------------|---------|----------|---------|----------------------------------------------------------------------------------------------------------------|
@@ -32,6 +33,7 @@ export default {
 | trackBy      | string  | false    | 'id'    | An unique id column used for checkbox column type to compare if a field is checked or not                      |
 
 
+
 ## DataTable Header Fields Props
 | Name              | Required | Default | Description                                                                                                                                               |
 |-------------------|----------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -41,6 +43,26 @@ export default {
 | format            | false    | null    | A function used to format a value in each line of the DataTable's body.                                                                                   |
 | __slot:actions    | false    | null    | Used to create a new column to be used for buttons or any kind of action. You have to inform the slot 'actions' and it will be rendered inside each line. |
 | __slot:checkboxes | false    | null    | Used to create a column with a checkbox. Every time you check or uncheck an item an event is emited.                                                      |
+
+
+## Pagination Props
+| Name             | Type    | Required | Default | Description                                                 |
+|------------------|---------|----------|---------|-------------------------------------------------------------|
+| totalItems       | number  | true     | null    | Total of items in your storage                              |
+| itemsPerPage     | number  | false    | 10      | Number of items displayed per page                          |
+| page             | number  | false    | 1       | Current page index                                          |
+| moveLastPage     | boolean | false    | true    | Flag to show or not the button to move to the last page     |
+| moveFirstPage    | boolean | false    | true    | Flag to show or not the button to move to the first page    |
+| moveNextPage     | boolean | false    | true    | Flag to show or not the button to move to the next page     |
+| movePreviousPage | boolean | false    | true    | Flag to show or not the button to move to the previous page |
+
+
+## ItemsPerPageDropdown Props
+| Name             | Type   | Required | Default      | Description                                                                                                       |
+|------------------|--------|----------|--------------|-------------------------------------------------------------------------------------------------------------------|
+| listItemsPerPage | array  | false    | [10, 20, 30] | An array of numbers which the user will have the posibily to change how many items are displayed in the DataTable |
+| itemsPerPage     | number | false    | 10           | Current value of how many items are displayed on the DataTable                                                    |
+
 
 ## Installation
 ```
