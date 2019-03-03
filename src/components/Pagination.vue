@@ -1,7 +1,7 @@
 <template>
   <ul id="v-data-table-pagination">
     <li
-      v-if="showMoveFirstPage"
+      v-if="moveFirstPage"
       class="pagination-item move-first-page"
     >
       <button
@@ -13,7 +13,7 @@
       </button>
     </li>
     <li
-      v-if="showMovePreviousPage"
+      v-if="movePreviousPage"
       class="pagination-item move-previous-page"
     >
       <button
@@ -42,7 +42,7 @@
       </template>
     </li>
     <li
-      v-if="showMoveNextPage"
+      v-if="moveNextPage"
       class="pagination-item move-next-page"
     >
       <button
@@ -54,7 +54,7 @@
       </button>
     </li>
     <li
-      v-if="showMoveLastPage"
+      v-if="moveLastPage"
       class="pagination-item move-last-page"
     >
       <button
@@ -124,17 +124,25 @@ export default {
 			type: Number,
 			default: 1
 		},
-		moveLastPage: Boolean,
-		moveFirstPage: Boolean,
-		moveNextPage: Boolean,
-		movePreviousPage: Boolean
+		moveLastPage: {
+      type: Boolean,
+      default: true
+    },
+		moveFirstPage:  {
+      type: Boolean,
+      default: true
+    },
+		moveNextPage:  {
+      type: Boolean,
+      default: true
+    },
+		movePreviousPage:  {
+      type: Boolean,
+      default: true
+    }
 	},
 	data: function () {
 		return {
-			showMoveFirstPage: this.moveFirstPage || true,
-			showMoveLastPage: this.moveLastPage || true,
-			showMoveNextPage: this.moveNextPage || true,
-			showMovePreviousPage: this.movePreviousPage || true,
 			perPage: this.itemsPerPage,
 			currPage: this.page
 		}
