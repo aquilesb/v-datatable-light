@@ -285,7 +285,7 @@ export default {
 				this.itemsChecked = this.itemsChecked.filter(itemChecked => itemChecked[this.trackBy] !== item[this.trackBy])
 				this.$emit('onUncheckedItem', item)
 			} else {
-				this.itemsChecked = [this.itemsChecked, item]
+				this.itemsChecked = [...this.itemsChecked, item]
 				this.$emit('onCheckedItem', item)
 			}
 		},
