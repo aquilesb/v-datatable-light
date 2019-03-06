@@ -34,6 +34,7 @@
         <ItemsPerPageDropdown
           :list-items-per-page="listItemsPerPage"
           :items-per-page="itemsPerPage"
+          :css="itemsPerPageCss"
           @onUpdate="updateItemsPerPage"
         />
       </div>
@@ -177,7 +178,20 @@
     box-shadow: none;
     opacity: .65;
   }
-  /* END PAGINATION CSS*/
+  /* END PAGINATION CSS */
+  
+  /* ITEMS PER PAGE DROPDOWN CSS */
+  .item-per-page-dropdown {
+    background-color: transparent;
+    min-height: 30px;
+    border: 1px solid #337ab7;
+    border-radius: 5px;
+    color: #337ab7;
+  }
+  .item-per-page-dropdown:hover {
+    cursor: pointer;
+  }
+  /* END ITEMS PER PAGE DROPDOWN CSS */
 </style>
 
 <script>
@@ -434,6 +448,9 @@ export default {
         moveNextPage: 'move-next-page',
         moveLastPage: 'move-last-page',
         pageBtn: 'page-btn',
+      },
+      itemsPerPageCss: {
+        select: 'item-per-page-dropdown'
       },
       isLoading: false,
       sort: "asc",
