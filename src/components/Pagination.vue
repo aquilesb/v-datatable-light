@@ -1,12 +1,12 @@
 <template>
-  <ul id="v-data-table-pagination">
+  <ul id="v-datatable-light-pagination" :class="css.paginaton">
     <li
       v-if="moveFirstPage"
-      class="pagination-item move-first-page"
+      :class="[css.paginationItem, css.moveFirstPage]"
     >
       <button
         :disabled="isActionDisabled('firstPage')"
-        class="page-btn"
+        :class="css.pageBtn"
         @click="changePage(1)"
       >
         &lt;&lt;
@@ -14,11 +14,11 @@
     </li>
     <li
       v-if="movePreviousPage"
-      class="pagination-item move-previous-page"
+      :class="[css.paginationItem, css.movePreviousPage]"
     >
       <button
         :disabled="isActionDisabled('previousPage')"
-        class="page-btn"
+        :class="css.pageBtn"
         @click="changePage(currPage - 1)"
       >
         &lt;
@@ -31,7 +31,7 @@
     >
       <template v-if="pageNr !== currPage">
         <button
-          class="page-btn"
+          :class="[css.pageBtn, css.pageNumber]"
           @click="changePage(pageNr)"
         >
           {{ pageNr }}
@@ -43,11 +43,11 @@
     </li>
     <li
       v-if="moveNextPage"
-      class="pagination-item move-next-page"
+      :class="[css.paginationItem, css.moveNextPage]"
     >
       <button
         :disabled="isActionDisabled('nextPage')"
-        class="page-btn"
+        :class="css.pageBtn"
         @click="changePage(currPage + 1)"
       >
         &gt;
@@ -55,11 +55,11 @@
     </li>
     <li
       v-if="moveLastPage"
-      class="pagination-item move-last-page"
+      :class="[css.paginationItem, css.moveLastPage]"
     >
       <button
         :disabled="isActionDisabled('lastPage')"
-        class="page-btn"
+        :class="css.pageBtn"
         @click="changePage(lastPage)"
       >
         &gt;&gt;
@@ -67,47 +67,6 @@
     </li>
   </ul>
 </template>
-<style>
-  #v-data-table-pagination {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 0;
-    padding: 0;
-    width: 300px;
-    height: 30px;
-  }
-
-  #v-data-table-pagination .pagination-item {
-    width: 30px;
-    margin-right: 5px;
-    font-size: 16px;
-    transition: color 0.15s ease-in-out;
-  }
-
-  #v-data-table-pagination .pagination-item.selected {
-    color: #ed9b19;
-  }
-
-  #v-data-table-pagination .pagination-item .page-btn {
-    background-color: transparent;
-    outline: none;
-    border: none;
-    color: #337ab7;
-    transition: color 0.15s ease-in-out;
-  }
-
-  #v-data-table-pagination .pagination-item .page-btn:hover {
-    color: #ed9b19;
-  }
-
-  #v-data-table-pagination .pagination-item .page-btn:disabled{
-    cursor: not-allowed;
-    box-shadow: none;
-    opacity: .65;
-  }
-</style>
 <script>
 export default {
 	name: 'DataTablePagination',
@@ -139,6 +98,18 @@ export default {
 		movePreviousPage:  {
       type: Boolean,
       default: true
+    },
+    css: {
+      type: Object,
+      default: () => ({
+        paginationItem: '',
+        moveFirstPage: '',
+        movePreviousPage: '',
+        moveNextPage: '',
+        moveLastPage: '',
+        pageNumber: '',
+        pageBtn: '',
+      })
     }
 	},
 	data: function () {

@@ -25,6 +25,7 @@
         :page="currentPage"
         :total-items="totalItems"
         :items-per-page="itemsPerPage"
+        :css="paginationCss"
         @onUpdate="changePage"
         @updateCurrentPage="updateCurrentPage"
       />
@@ -135,6 +136,48 @@
   width: 500px;
 }
 /* End Datatable CSS */
+
+/* Pagination CSS */
+ #v-datatable-light-pagination {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    height: 30px;
+  }
+
+  #v-datatable-light-pagination .pagination-item {
+    width: 30px;
+    margin-right: 5px;
+    font-size: 16px;
+    transition: color 0.15s ease-in-out;
+  }
+
+  #v-datatable-light-pagination .pagination-item.selected {
+    color: #ed9b19;
+  }
+
+  #v-datatable-light-pagination .pagination-item .page-btn {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #337ab7;
+    transition: color 0.15s ease-in-out;
+  }
+
+  #v-datatable-light-pagination .pagination-item .page-btn:hover {
+    color: #ed9b19;
+  }
+
+  #v-datatable-light-pagination .pagination-item .page-btn:disabled{
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: .65;
+  }
+  /* END PAGINATION CSS*/
 </style>
 
 <script>
@@ -383,6 +426,14 @@ export default {
         arrowUp: 'arrow up',
         arrowDown: 'arrow down',
         footer: 'footer'
+      },
+      paginationCss: {
+        paginationItem: 'pagination-item',
+        moveFirstPage: 'move-first-page',
+        movePreviousPage: 'move-previous-page',
+        moveNextPage: 'move-next-page',
+        moveLastPage: 'move-last-page',
+        pageBtn: 'page-btn',
       },
       isLoading: false,
       sort: "asc",
