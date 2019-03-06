@@ -1,8 +1,8 @@
 
-# v-datatable
-[![GitHub open issues](https://img.shields.io/github/issues/aquilesb/v-datatable.svg)](https://github.com/aquilesb/v-datatable/issues)
+# v-datatable-light
+[![GitHub open issues](https://img.shields.io/github/issues/aquilesb/v-datatable-light.svg)](https://github.com/aquilesb/v-datatable-light/issues)
 [![Npm version](https://img.shields.io/npm/v/v-datatable-light.svg)](https://www.npmjs.com/package/v-datatable-light)
-![GitHub](https://img.shields.io/github/license/aquilesb/v-datatable.svg)
+![GitHub](https://img.shields.io/github/license/aquilesb/v-datatable-light.svg)
 
 ## Usage
 ```HTML
@@ -13,6 +13,7 @@
 ```
 ```javascript
 import { DataTable } from 'v-datatable-light'
+import "v-datatable-light/dist/v-datatable-light.css";
 
 export default {
   components: {
@@ -20,6 +21,8 @@ export default {
   }
 }
 ```
+
+## [👀 Demo Sandbox](https://codesandbox.io/s/k0l3nrq9x3)
 
 ## DataTable Props
 | Field        | Type    | Required | default | Description                                                                                                    |
