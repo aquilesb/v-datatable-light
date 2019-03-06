@@ -1,38 +1,39 @@
 <template>
-  <table id="v-datatable" class="table table-bordered table-hover table-striped table-center">
-    <thead>
-      <tr>
+  <table id="v-datatable-light" :class="css.table">
+    <thead :class="css.thead">
+      <tr :class="css.theadTr">
         <th
           v-for="item in headers"
           :key="item.label"
-          :class="headerItemClass(item)"
+          :class="headerItemClass(item, css.th)"
         >
           <div
             v-if="!isFieldSpecial(item.name)"
-            class="th-wrapper"
+            :class="css.thWrapper"
             @click="orderBy(item.name)"
           >
             {{ item.label }}
             <div
               v-if="item.sortable"
-              :class="arrowsWrapper(item.name)"
+              :class="arrowsWrapper(item.name, css.arrowsWrapper)"
             >
               <div
                 v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'desc')"
-                class="arrow up"
+                :class="css.arrowUp"
               />
               <div
                 v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'asc')"
-                class="arrow down"
+                :class="css.arrowDown"
               />
             </div>
           </div>
           <div
             v-if="isFieldSpecial(item.name) && extractArgs(item.name) === 'checkboxes'"
-            class="th-wrapper checkboxes"
+            :class="css.thWrapperCheckboxes"
           >
             <input
               type="checkbox"
+              :class="css.checkboxHeader"
               :checked="checkedAll"
               @click="checkAll"
             >
@@ -40,10 +41,10 @@
         </th>
       </tr>
     </thead>
-    <tbody>
+    <tbody :class="css.tbody">
       <template v-if="isLoading">
-        <tr>
-          <td :colspan="headers.length">
+        <tr :class="css.tbodyTrSpinner">
+          <td :colspan="headers.length" :class="css.tbodyTdSpinner">
             <slot name="spinner" />
           </td>
         </tr>
@@ -52,27 +53,28 @@
         <tr
           v-for="(item, index) in data"
           :key="index"
+          :class="css.tbodyTr"
         >
           <td
             v-for="key in headers"
             :key="`${index}-${key.name}`"
+            :class="css.tbodyTd"
           >
-            <template v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'actions'">
-              <slot
-                :name="extractArgs(key.name)"
-                :row-data="item"
-                :row-index="index"
-              />
-            </template>
-            <template v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'checkboxes'">
-              <input
-                type="checkbox"
-                :row-data="item"
-                :row-index="index"
-                :checked="checkedAll || isCheckedItem(item)"
-                @click="checkItem(item, $event)"
-              >
-            </template>
+            <slot
+              v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'actions'"
+              :name="extractArgs(key.name)"
+              :row-data="item"
+              :row-index="index"
+            />
+            <input
+              v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'checkboxes'"
+              type="checkbox"
+              :class="css.checkbox"
+              :row-data="item"
+              :row-index="index"
+              :checked="checkedAll || isCheckedItem(item)"
+              @click="checkItem(item, $event)"
+            >
             <template v-else-if="key.format">
               {{ key.format(item[key.name]) }}
             </template>
@@ -83,17 +85,17 @@
         </tr>
       </template>
       <template v-else>
-        <tr>
-          <td :colspan="headers.length">
+        <tr :class="css.notFoundTr">
+          <td :colspan="headers.length" :class="css.notFoundTd">
             {{ notFoundMessage }}
           </td>
         </tr>
       </template>
     </tbody>
-    <tfoot v-if="hasSlots">
-      <tr>
-        <th :colspan="headers.length">
-          <div class="footer">
+    <tfoot v-if="hasSlots" :class="css.tfoot">
+      <tr :class="css.tfootTr">
+        <th :colspan="headers.length" :class="css.tfootTd">
+          <div :class="css.footer">
             <slot name="ItemsPerPage" />
             <slot name="pagination" />
           </div>
@@ -102,76 +104,6 @@
     </tfoot>
   </table>
 </template>
-<style>
-#v-datatable .header-item {
-  cursor: pointer;
-  color: #337ab7;
-  transition: color 0.15s ease-in-out;
-}
-
-#v-datatable .header-item:hover {
-  color: #ed9b19;
-}
-
-#v-datatable .header-item.no-sortable{
-  cursor: default;
-}
-#v-datatable .header-item.no-sortable:hover {
-  color: #337ab7;
-}
-
-#v-datatable .header-item .th-wrapper {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  font-weight: bold;
-}
-
-#v-datatable .header-item .th-wrapper.checkboxes {
-  justify-content: center;
-}
-
-#v-datatable .header-item .th-wrapper .arrows-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-  justify-content: space-between;
-}
-
-#v-datatable .header-item .th-wrapper .arrows-wrapper.centralized {
-  justify-content: center;
-}
-
-#v-datatable .arrow {
-  transition: color 0.15s ease-in-out;
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-}
-
-#v-datatable .arrow.up {
-  border-bottom: 8px solid #337ab7;
-}
-
-#v-datatable .arrow.up:hover {
-  border-bottom: 8px solid #ed9b19;
-}
-
-#v-datatable .arrow.down {
-  border-top: 8px solid #337ab7;
-}
-
-#v-datatable .arrow.down:hover {
-  border-top: 8px solid #ed9b19;
-}
-
-#v-datatable .footer {
-  display: flex;
-  justify-content: space-between;
-  width: 500px;
-}
-</style>
 <script>
 export default {
 	name: 'DataTable',
@@ -203,7 +135,34 @@ export default {
 		trackBy: {
 			type: String,
 			default: 'id'
-		}
+    },
+    css: {
+      type: Object,
+      default: () => ({
+        table: '',
+        thead: '',
+        theadTr: '',
+        th: '',
+        tbody: '',
+        tbodyTr: '',
+        tbodyTrSpinner: '',
+        tbodyTd: '',
+        tbodyTdSpinner: '',
+        tfoot: '',
+        tfootTh: '',
+        tfootTr: '',
+        footer: '',
+        thWrapper: '',
+        thWrapperCheckboxes: '',
+        arrowsWrapper: '',
+        arrowUp: '',
+        arrowDown: '',
+        checkboxHeader: '',
+        checkbox: '',
+        notFoundTr: '',
+        notFoundTd: '',
+      })
+    }
 	},
 
 	data: function () {
@@ -241,11 +200,11 @@ export default {
 	},
 
 	methods: {
-		arrowsWrapper: function (field) {
+		arrowsWrapper: function (field, className) {
 			if (this.sortedField === field && this.sortedDir) {
-				return 'arrows-wrapper centralized'
+				return `${className} centralized`
 			}
-			return 'arrows-wrapper'
+			return className
 		},
 
 		updateData: function () {
@@ -299,8 +258,8 @@ export default {
       return foundHeader && foundHeader.sortable
     },
 
-    headerItemClass: function (item) {
-      return item && item.sortable ? 'header-item' : 'header-item no-sortable'
+    headerItemClass: function (item, className) {
+      return item && item.sortable ? className : `${className} no-sortable`
     },
 
 		isFieldSpecial: field => field.indexOf('__') > -1,
