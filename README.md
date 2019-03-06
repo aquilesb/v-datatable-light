@@ -13,7 +13,6 @@
 ```
 ```javascript
 import { DataTable } from 'v-datatable-light'
-import "v-datatable-light/dist/v-datatable-light.css";
 
 export default {
   components: {
