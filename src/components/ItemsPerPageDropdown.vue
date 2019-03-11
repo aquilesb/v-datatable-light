@@ -1,6 +1,7 @@
 <template>
   <select
-    id="v-data-table-items-per-page"
+    id="v-datatable-light-items-per-page"
+    :class="css.select"
     @change="onUpdate"
   >
     <option
@@ -13,18 +14,6 @@
     </option>
   </select>
 </template>
-<style>
-  #v-data-table-items-per-page {
-    background-color: transparent;
-    min-height: 30px;
-    border: 1px solid #337ab7;
-    border-radius: 5px;
-    color: #337ab7;
-  }
-  #v-data-table-items-per-page :hover {
-    cursor: pointer;
-  }
-</style>
 <script>
 export default {
 	name: 'DataTableItemsDropdown',
@@ -36,7 +25,13 @@ export default {
 		itemsPerPage: {
 			type: Number,
 			default: 10
-		}
+    },
+    css: {
+      type: Object,
+      default: () => ({
+        select: ''
+      })
+    }
 	},
 	methods: {
 		onUpdate: function (event) {
