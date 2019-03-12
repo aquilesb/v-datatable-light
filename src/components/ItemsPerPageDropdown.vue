@@ -1,6 +1,6 @@
 <template>
   <select
-    id="v-datatable-light-items-per-page"
+    class="v-datatable-light-items-per-page"
     :class="css.select"
     @change="onUpdate"
   >

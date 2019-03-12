@@ -1,22 +1,16 @@
 <template>
-  <table id="v-datatable-light" :class="css.table">
-    <thead :class="css.thead">
+  <table :class="['v-datatable-light', css.table]">
+    <thead :class="css.thead" :style="theadStyle">
       <tr :class="css.theadTr">
-        <th
+        <th 
           v-for="item in headers"
           :key="item.label"
-          :class="headerItemClass(item, css.th)"
-        >
-          <div
-            v-if="!isFieldSpecial(item.name)"
-            :class="css.thWrapper"
-            @click="orderBy(item.name)"
+          :class="headerItemClass(item, css.theadTh)"
+          :style="getColumnWidth(item)" 
           >
+          <div v-if="!isFieldSpecial(item.name)" :class="css.thWrapper" @click="orderBy(item.name)">
             {{ item.label }}
-            <div
-              v-if="item.sortable"
-              :class="arrowsWrapper(item.name, css.arrowsWrapper)"
-            >
+            <div v-if="item.sortable" :class="arrowsWrapper(item.name, css.arrowsWrapper)">
               <div
                 v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'desc')"
                 :class="css.arrowUp"
@@ -41,25 +35,21 @@
         </th>
       </tr>
     </thead>
-    <tbody :class="css.tbody">
+    <tbody :class="css.tbody" :style="tbodyStyle">
       <template v-if="isLoading">
         <tr :class="css.tbodyTrSpinner">
           <td :colspan="headers.length" :class="css.tbodyTdSpinner">
-            <slot name="spinner" />
+            <slot name="spinner"/>
           </td>
         </tr>
       </template>
       <template v-else-if="data.length">
-        <tr
-          v-for="(item, index) in data"
-          :key="index"
-          :class="css.tbodyTr"
-        >
-          <td
+        <tr v-for="(item, index) in data" :key="index" :class="css.tbodyTr">
+          <td 
             v-for="key in headers"
             :key="`${index}-${key.name}`"
             :class="css.tbodyTd"
-          >
+            :style="getColumnWidth(key)">
             <slot
               v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'actions'"
               :name="extractArgs(key.name)"
@@ -75,20 +65,14 @@
               :checked="checkedAll || isCheckedItem(item)"
               @click="checkItem(item, $event)"
             >
-            <template v-else-if="key.format">
-              {{ key.format(item[key.name]) }}
-            </template>
-            <template v-else>
-              {{ item[key.name] }}
-            </template>
+            <template v-else-if="key.format">{{ key.format(item[key.name]) }}</template>
+            <template v-else>{{ item[key.name] }}</template>
           </td>
         </tr>
       </template>
       <template v-else>
         <tr :class="css.notFoundTr">
-          <td :colspan="headers.length" :class="css.notFoundTd">
-            {{ notFoundMessage }}
-          </td>
+          <td :colspan="headers.length" :class="css.notFoundTd">{{ notFoundMessage }}</td>
         </tr>
       </template>
     </tbody>
@@ -96,8 +80,8 @@
       <tr :class="css.tfootTr">
         <th :colspan="headers.length" :class="css.tfootTd">
           <div :class="css.footer">
-            <slot name="ItemsPerPage" />
-            <slot name="pagination" />
+            <slot name="ItemsPerPage"/>
+            <slot name="pagination"/>
           </div>
         </th>
       </tr>
@@ -106,167 +90,206 @@
 </template>
 <script>
 export default {
-	name: 'DataTable',
-	props: {
-		headerFields: {
-			type: Array,
-			required: true
-		},
-		data: {
-			type: Array,
-			required: true
-		},
-		isLoading: {
-			type: Boolean,
-			default: false,
-		},
-		sortField: {
-			type: String,
-			default: null
-		},
-		sort: {
-			type: String,
-			default: null
-		},
-		notFoundMsg: {
-			type: String,
-			default: null,
-		},
-		trackBy: {
-			type: String,
-			default: 'id'
+  name: "DataTable",
+  props: {
+    headerFields: {
+      type: Array,
+      required: true
+    },
+    data: {
+      type: Array,
+      required: true
+    },
+    isLoading: {
+      type: Boolean,
+      default: false
+    },
+    sortField: {
+      type: String,
+      default: null
+    },
+    sort: {
+      type: String,
+      default: null
+    },
+    notFoundMsg: {
+      type: String,
+      default: null
+    },
+    trackBy: {
+      type: String,
+      default: "id"
     },
     css: {
       type: Object,
       default: () => ({
-        table: '',
-        thead: '',
-        theadTr: '',
-        th: '',
-        tbody: '',
-        tbodyTr: '',
-        tbodyTrSpinner: '',
-        tbodyTd: '',
-        tbodyTdSpinner: '',
-        tfoot: '',
-        tfootTh: '',
-        tfootTr: '',
-        footer: '',
-        thWrapper: '',
-        thWrapperCheckboxes: '',
-        arrowsWrapper: '',
-        arrowUp: '',
-        arrowDown: '',
-        checkboxHeader: '',
-        checkbox: '',
-        notFoundTr: '',
-        notFoundTd: '',
+        table: "",
+        thead: "",
+        theadTr: "",
+        theadTh: "",
+        tbody: "",
+        tbodyTr: "",
+        tbodyTrSpinner: "",
+        tbodyTd: "",
+        tbodyTdSpinner: "",
+        tfoot: "",
+        tfootTd: "",
+        tfootTr: "",
+        footer: "",
+        thWrapper: "",
+        thWrapperCheckboxes: "",
+        arrowsWrapper: "",
+        arrowUp: "",
+        arrowDown: "",
+        checkboxHeader: "",
+        checkbox: "",
+        notFoundTr: "",
+        notFoundTd: ""
       })
+    },
+    tableHeight: {
+      type: String,
+      default: null,
+    },
+    defaultColumnWidth: {
+      type: String,
+      default: '150px',
     }
-	},
+  },
 
-	data: function () {
-		return {
-			sortedField: this.sortField,
-			sortedDir: this.sort,
-			notFoundMessage: this.notFoundMsg,
-			loading: this.isLoading,
-			checkedAll: false,
-			itemsChecked: []
-		}
-	},
+  data: function() {
+    return {
+      sortedField: this.sortField,
+      sortedDir: this.sort,
+      notFoundMessage: this.notFoundMsg,
+      loading: this.isLoading,
+      checkedAll: false,
+      itemsChecked: []
+    };
+  },
 
-	computed: {
-		hasSlots: function () {
-			return this.$slots.pagination !== undefined || this.$slots.ItemsPerPage !== undefined
-		},
+  computed: {
+    hasSlots: function() {
+      return (
+        this.$slots.pagination !== undefined ||
+        this.$slots.ItemsPerPage !== undefined
+      );
+    },
 
-		headers: function () {
-			if (
-				this.headerFields &&
+    headers: function() {
+      if (
+        this.headerFields &&
         this.headerFields.constructor === Array &&
         this.headerFields.length
-			) {
-				return Object.keys(this.headerFields).map(key => {
-					const field = this.headerFields[key]
-					if (typeof field === 'string') {
-						return { label: field, name: field }
-					}
-					return field
-				})
-			}
-			return []
-		}
-	},
+      ) {
+        return Object.keys(this.headerFields).map(key => {
+          const field = this.headerFields[key];
+          if (typeof field === "string") {
+            return { label: field, name: field };
+          }
+          return field;
+        });
+      }
+      return [];
+    },
+    tbodyStyle: function () {
+      if (this.tableHeight) {
+        return {
+          height: this.tableHeight,
+          display: 'block',
+          overflowX: 'auto'
+        }
+      }
+      return null
+    },
+    theadStyle: function () {
+      return this.tableHeight ? { display: 'block'} : null
+    }
+  },
 
-	methods: {
-		arrowsWrapper: function (field, className) {
-			if (this.sortedField === field && this.sortedDir) {
-				return `${className} centralized`
-			}
-			return className
-		},
+  methods: {
+    arrowsWrapper: function(field, className) {
+      if (this.sortedField === field && this.sortedDir) {
+        return `${className} centralized`;
+      }
+      return className;
+    },
 
-		updateData: function () {
-			const params = {
-				sortField: this.sortedField,
-				sort: this.sortedDir
-			}
+    updateData: function() {
+      const params = {
+        sortField: this.sortedField,
+        sort: this.sortedDir
+      };
 
-			this.$emit('onUpdate', params)
-		},
+      this.$emit("onUpdate", params);
+    },
 
-		orderBy: function (field) {
+    orderBy: function(field) {
       if (this.isFieldSortable(field)) {
         if (this.sortedField === field) {
-          this.sortedDir = this.sortedDir === 'asc' ? 'desc' : 'asc'
+          this.sortedDir = this.sortedDir === "asc" ? "desc" : "asc";
         } else {
-          this.sortedDir = 'desc'
-          this.sortedField = field
+          this.sortedDir = "desc";
+          this.sortedField = field;
         }
-        this.updateData()
+        this.updateData();
       }
-		},
-
-		checkAll: function () {
-			this.checkedAll = !this.checkedAll
-			if (this.checkedAll) {
-				this.itemsChecked = this.data
-			} else {
-				this.itemsChecked = []
-			}
-			this.$emit('onCheckAll', this.itemsChecked)
-		},
-
-		checkItem: function (item) {
-			const found = this.itemsChecked.find(itemChecked => itemChecked[this.trackBy] === item[this.trackBy])
-			if (found) {
-				this.itemsChecked = this.itemsChecked.filter(itemChecked => itemChecked[this.trackBy] !== item[this.trackBy])
-				this.$emit('onUncheckedItem', item)
-			} else {
-				this.itemsChecked = [...this.itemsChecked, item]
-				this.$emit('onCheckedItem', item)
-			}
-		},
-
-		isCheckedItem: function (item) {
-			return !!this.itemsChecked.find(itemChecked => itemChecked[this.trackBy] === item[this.trackBy])
-		},
-
-    isFieldSortable: function (field) {
-      const foundHeader = this.headerFields.find(item => item.name === field)
-      return foundHeader && foundHeader.sortable
     },
 
-    headerItemClass: function (item, className) {
-      return item && item.sortable ? className : `${className} no-sortable`
+    checkAll: function() {
+      this.checkedAll = !this.checkedAll;
+      if (this.checkedAll) {
+        this.itemsChecked = this.data;
+      } else {
+        this.itemsChecked = [];
+      }
+      this.$emit("onCheckAll", this.itemsChecked);
     },
 
-		isFieldSpecial: field => field.indexOf('__') > -1,
+    checkItem: function(item) {
+      const found = this.itemsChecked.find(
+        itemChecked => itemChecked[this.trackBy] === item[this.trackBy]
+      );
+      if (found) {
+        this.itemsChecked = this.itemsChecked.filter(
+          itemChecked => itemChecked[this.trackBy] !== item[this.trackBy]
+        );
+        this.$emit("onUncheckedItem", item);
+      } else {
+        this.itemsChecked = [...this.itemsChecked, item];
+        this.$emit("onCheckedItem", item);
+      }
+    },
 
-		extractName: string => string.split(':')[0].trim(),
+    isCheckedItem: function(item) {
+      return !!this.itemsChecked.find(
+        itemChecked => itemChecked[this.trackBy] === item[this.trackBy]
+      );
+    },
 
-		extractArgs: string => string.split(':')[1]
-	}
-}
+    isFieldSortable: function(field) {
+      const foundHeader = this.headerFields.find(item => item.name === field);
+      return foundHeader && foundHeader.sortable;
+    },
+
+    headerItemClass: function(item, className) {
+      return item && item.sortable ? className : `${className} no-sortable`;
+    },
+
+    isFieldSpecial: field => field.indexOf("__") > -1,
+
+    extractName: string => string.split(":")[0].trim(),
+
+    extractArgs: string => string.split(":")[1],
+
+    getColumnWidth: function (item) {
+      if (this.tableHeight) {
+        if (item.name === '__slot:checkboxes') {
+          return { width: '50px' }
+        }
+        return { width: item.width || this.defaultColumnWidth }
+      }
+    }
+  }
+};
 </script>

@@ -11,6 +11,7 @@
       not-found-msg="Items not found"
       @onUpdate="dtUpdateSort"
       track-by="firstName"
+      tableHeight="400px"
     >
       <input
         slot="actions"
@@ -68,6 +69,9 @@
 }
 
 /* Datatable CSS */
+.v-datatable-light {
+  width: 1167px;
+}
 .v-datatable-light .header-item {
   cursor: pointer;
   color: #337ab7;
@@ -399,6 +403,7 @@ export default {
         {
           name: "firstName",
           label: "First Name",
+          width: '200px',
           sortable: true
         },
         {
@@ -413,7 +418,7 @@ export default {
         },
         {
           name: "dob",
-          label: "Data of Birght",
+          label: "Date of Birth",
           sortable: true
         },
         {
