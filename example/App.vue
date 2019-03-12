@@ -10,7 +10,7 @@
       :css="datatableCss"
       not-found-msg="Items not found"
       @onUpdate="dtUpdateSort"
-      trackBy="firstName"
+      track-by="firstName"
     >
       <input
         slot="actions"
