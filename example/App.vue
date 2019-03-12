@@ -68,46 +68,46 @@
 }
 
 /* Datatable CSS */
-#v-datatable-light .header-item {
+.v-datatable-light .header-item {
   cursor: pointer;
   color: #337ab7;
   transition: color 0.15s ease-in-out;
 }
 
-#v-datatable-light .header-item:hover {
+.v-datatable-light .header-item:hover {
   color: #ed9b19;
 }
 
-#v-datatable-light .header-item.no-sortable{
+.v-datatable-light .header-item.no-sortable{
   cursor: default;
 }
-#v-datatable-light .header-item.no-sortable:hover {
+.v-datatable-light .header-item.no-sortable:hover {
   color: #337ab7;
 }
 
-#v-datatable-light .header-item .th-wrapper {
+.v-datatable-light .header-item .th-wrapper {
   display: flex;
   width: 100%;
   height: 100%;
   font-weight: bold;
 }
 
-#v-datatable-light .header-item .th-wrapper.checkboxes {
+.v-datatable-light .header-item .th-wrapper.checkboxes {
   justify-content: center;
 }
 
-#v-datatable-light .header-item .th-wrapper .arrows-wrapper {
+.v-datatable-light .header-item .th-wrapper .arrows-wrapper {
   display: flex;
   flex-direction: column;
   margin-left: 10px;
   justify-content: space-between;
 }
 
-#v-datatable-light .header-item .th-wrapper .arrows-wrapper.centralized {
+.v-datatable-light .header-item .th-wrapper .arrows-wrapper.centralized {
   justify-content: center;
 }
 
-#v-datatable-light .arrow {
+.v-datatable-light .arrow {
   transition: color 0.15s ease-in-out;
   width: 0;
   height: 0;
@@ -115,23 +115,23 @@
   border-right: 8px solid transparent;
 }
 
-#v-datatable-light .arrow.up {
+.v-datatable-light .arrow.up {
   border-bottom: 8px solid #337ab7;
 }
 
-#v-datatable-light .arrow.up:hover {
+.v-datatable-light .arrow.up:hover {
   border-bottom: 8px solid #ed9b19;
 }
 
-#v-datatable-light .arrow.down {
+.v-datatable-light .arrow.down {
   border-top: 8px solid #337ab7;
 }
 
-#v-datatable-light .arrow.down:hover {
+.v-datatable-light .arrow.down:hover {
   border-top: 8px solid #ed9b19;
 }
 
-#v-datatable-light .footer {
+.v-datatable-light .footer {
   display: flex;
   justify-content: space-between;
   width: 500px;
@@ -139,7 +139,7 @@
 /* End Datatable CSS */
 
 /* Pagination CSS */
- #v-datatable-light-pagination {
+ .v-datatable-light-pagination {
     list-style: none;
     display: flex;
     align-items: center;
@@ -150,18 +150,18 @@
     height: 30px;
   }
 
-  #v-datatable-light-pagination .pagination-item {
+  .v-datatable-light-pagination .pagination-item {
     width: 30px;
     margin-right: 5px;
     font-size: 16px;
     transition: color 0.15s ease-in-out;
   }
 
-  #v-datatable-light-pagination .pagination-item.selected {
+  .v-datatable-light-pagination .pagination-item.selected {
     color: #ed9b19;
   }
 
-  #v-datatable-light-pagination .pagination-item .page-btn {
+  .v-datatable-light-pagination .pagination-item .page-btn {
     background-color: transparent;
     outline: none;
     border: none;
@@ -169,11 +169,11 @@
     transition: color 0.15s ease-in-out;
   }
 
-  #v-datatable-light-pagination .pagination-item .page-btn:hover {
+  .v-datatable-light-pagination .pagination-item .page-btn:hover {
     color: #ed9b19;
   }
 
-  #v-datatable-light-pagination .pagination-item .page-btn:disabled{
+  .v-datatable-light-pagination .pagination-item .page-btn:disabled{
     cursor: not-allowed;
     box-shadow: none;
     opacity: .65;
