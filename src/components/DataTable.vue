@@ -1,8 +1,13 @@
 <template>
-  <table class="v-datatable-light" :class="css.tableHeader">
-    <thead :class="css.thead">
+  <table :class="['v-datatable-light', css.table]">
+    <thead :class="css.thead" :style="theadStyle">
       <tr :class="css.theadTr">
-        <th v-for="item in headers" :key="item.label" :class="headerItemClass(item, css.th)">
+        <th 
+          v-for="item in headers"
+          :key="item.label"
+          :class="headerItemClass(item, css.th)"
+          :style="getColumnWidth(item)" 
+          >
           <div v-if="!isFieldSpecial(item.name)" :class="css.thWrapper" @click="orderBy(item.name)">
             {{ item.label }}
             <div v-if="item.sortable" :class="arrowsWrapper(item.name, css.arrowsWrapper)">
@@ -30,7 +35,7 @@
         </th>
       </tr>
     </thead>
-    <tbody :class="css.tbody">
+    <tbody :class="css.tbody" :style="tbodyStyle">
       <template v-if="isLoading">
         <tr :class="css.tbodyTrSpinner">
           <td :colspan="headers.length" :class="css.tbodyTdSpinner">
@@ -40,7 +45,11 @@
       </template>
       <template v-else-if="data.length">
         <tr v-for="(item, index) in data" :key="index" :class="css.tbodyTr">
-          <td v-for="key in headers" :key="`${index}-${key.name}`" :class="css.tbodyTd">
+          <td 
+            v-for="key in headers"
+            :key="`${index}-${key.name}`"
+            :class="css.tbodyTd"
+            :style="getColumnWidth(key)">
             <slot
               v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'actions'"
               :name="extractArgs(key.name)"
@@ -137,6 +146,14 @@ export default {
         notFoundTr: "",
         notFoundTd: ""
       })
+    },
+    tableHeight: {
+      type: String,
+      default: null,
+    },
+    defaultColumnWidth: {
+      type: String,
+      default: '150px',
     }
   },
 
@@ -174,6 +191,19 @@ export default {
         });
       }
       return [];
+    },
+    tbodyStyle: function () {
+      if (this.tableHeight) {
+        return {
+          height: this.tableHeight,
+          display: 'block',
+          overflowX: 'auto'
+        }
+      }
+      return null
+    },
+    theadStyle: function () {
+      return this.tableHeight ? { display: 'block'} : null
     }
   },
 
@@ -250,7 +280,16 @@ export default {
 
     extractName: string => string.split(":")[0].trim(),
 
-    extractArgs: string => string.split(":")[1]
+    extractArgs: string => string.split(":")[1],
+
+    getColumnWidth: function (item) {
+      if (this.tableHeight) {
+        if (item.name === '__slot:checkboxes') {
+          return { width: '50px' }
+        }
+        return { width: item.width || this.defaultColumnWidth }
+      }
+    }
   }
 };
 </script>
