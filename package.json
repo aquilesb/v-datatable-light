@@ -1,6 +1,6 @@
 {
   "name": "v-datatable-light",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A lightweight vue datatable component with no dependencies",
   "main": "dist/v-datatable-light.umd.min.js",
   "private": false,
