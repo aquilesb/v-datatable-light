@@ -5,7 +5,7 @@
         <th 
           v-for="item in headers"
           :key="item.label"
-          :class="headerItemClass(item, css.th)"
+          :class="headerItemClass(item, css.theadTh)"
           :style="getColumnWidth(item)" 
           >
           <div v-if="!isFieldSpecial(item.name)" :class="css.thWrapper" @click="orderBy(item.name)">
@@ -126,14 +126,14 @@ export default {
         table: "",
         thead: "",
         theadTr: "",
-        th: "",
+        theadTh: "",
         tbody: "",
         tbodyTr: "",
         tbodyTrSpinner: "",
         tbodyTd: "",
         tbodyTdSpinner: "",
         tfoot: "",
-        tfootTh: "",
+        tfootTd: "",
         tfootTr: "",
         footer: "",
         thWrapper: "",
