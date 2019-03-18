@@ -65,6 +65,12 @@
               :checked="checkedAll || isCheckedItem(item)"
               @click="checkItem(item, $event)"
             >
+            <slot
+              v-if="key.customElement"
+              :row-data="item"
+              :row-index="index"
+              :name="customElementName(key)"
+            />
             <template v-else-if="key.format">{{ key.format(item[key.name]) }}</template>
             <template v-else>{{ item[key.name] }}</template>
           </td>
@@ -289,7 +295,9 @@ export default {
         }
         return { width: item.width || this.defaultColumnWidth }
       }
-    }
+    },
+
+    customElementName: ({ customElement, name }) => typeof customElement === 'string' ? customElement : name
   }
 };
 </script>
