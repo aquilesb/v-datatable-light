@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h3 class="title">v-Datatable example</h3>
+    <!-- Datatable -->
     <DataTable
       :header-fields="headerFields"
       :sort-field="sortField"
@@ -12,6 +13,7 @@
       @onUpdate="dtUpdateSort"
       track-by="firstName"
     >
+     <!-- Action button slot -->
       <input
         slot="actions"
         slot-scope="props"
@@ -20,6 +22,8 @@
         value="Edit"
         @click="dtEditClick(props)"
       >
+
+      <!-- Pagination component as a slot, but could be drag out from Database element -->
       <Pagination
         slot="pagination"
         :page="currentPage"
@@ -29,6 +33,8 @@
         @onUpdate="changePage"
         @updateCurrentPage="updateCurrentPage"
       />
+
+      <!-- ItemsPerPage component as a slot, but could be drag out from Database element -->
       <div class="items-per-page" slot="ItemsPerPage">
         <label>Items per page</label>
         <ItemsPerPageDropdown
@@ -38,7 +44,14 @@
           @onUpdate="updateItemsPerPage"
         />
       </div>
+
+      <!-- Spinner element as slot used when is-loading attribute is true -->
       <Spinner slot="spinner"/>
+
+      <!-- Custom element for hometown -->
+      <div slot="HometownNew" slot-scope="props">
+        <input type="text" :value="props.rowData.hometown" @keyup="changeHometown($event, props.rowData.id)" class="form-control"/>
+      </div>
     </DataTable>
   </div>
 </template>
@@ -215,6 +228,7 @@ const formatDate = value => {
 
 const initialData = [
   {
+    id: 1,
     firstName: "Lucca",
     lastName: "Lin",
     hometown: "Melbourne",
@@ -223,6 +237,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 2,
     firstName: "Zahid",
     lastName: "Werner",
     hometown: "Sydney",
@@ -231,6 +246,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 3,
     firstName: "Gabriel",
     lastName: "Griffiths",
     hometown: "Chicago",
@@ -239,6 +255,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 4,
     firstName: "Talha",
     lastName: "Tucker",
     hometown: "Berlim",
@@ -247,6 +264,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 5,
     firstName: "Aariz",
     lastName: "Piper",
     hometown: "Auckland",
@@ -255,6 +273,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 6,
     firstName: "Macsen",
     lastName: "Schultz",
     hometown: "Rio de Janeiro",
@@ -263,6 +282,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 7,
     firstName: "Sebastian",
     lastName: "Cervantes",
     hometown: "Brisbane",
@@ -271,6 +291,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 8,
     firstName: "Tayyab",
     lastName: "Lister",
     hometown: "Perth",
@@ -279,6 +300,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 9,
     firstName: "Anum",
     lastName: "Warren",
     hometown: "Manaus",
@@ -287,6 +309,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 10,
     firstName: "Areeba",
     lastName: "Stein",
     hometown: "Rome",
@@ -295,6 +318,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 11,
     firstName: "Alesha",
     lastName: "Sharp",
     hometown: "New York City",
@@ -303,6 +327,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 12,
     firstName: "Aadil",
     lastName: "Fitzgerald",
     hometown: "Vancouver",
@@ -311,6 +336,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 13,
     firstName: "Amaya",
     lastName: "Dillon",
     hometown: "Montreal",
@@ -319,6 +345,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 14,
     firstName: "Hammad",
     lastName: "Ruiz",
     hometown: "Buenos Aires",
@@ -327,6 +354,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 15,
     firstName: "Sapphire",
     lastName: "Pacheco",
     hometown: "Mexico City",
@@ -335,6 +363,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 16,
     firstName: "Amanah",
     lastName: "Velez",
     hometown: "London",
@@ -343,6 +372,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 17,
     firstName: "Mirza",
     lastName: "Ratliff",
     hometown: "Manchester",
@@ -351,6 +381,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 18,
     firstName: "Emre",
     lastName: "Amos",
     hometown: "Sapiranga",
@@ -359,6 +390,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 19,
     firstName: "Yunus",
     lastName: "Vu",
     hometown: "Madrid",
@@ -367,6 +399,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 20,
     firstName: "Duncan",
     lastName: "Cotton",
     hometown: "Barcelona",
@@ -375,6 +408,7 @@ const initialData = [
     updated: new Date().getTime()
   },
   {
+    id: 21,
     firstName: "Elvis",
     lastName: "Ray",
     hometown: "Lisbon",
@@ -409,7 +443,8 @@ export default {
         {
           name: "hometown",
           label: "Hometown",
-          sortable: true
+          sortable: true,
+          customElement: 'HometownNew'
         },
         {
           name: "dob",
@@ -458,13 +493,14 @@ export default {
       listItemsPerPage: [5, 10, 20, 50, 100],
       itemsPerPage: 10,
       currentPage: 1,
-      totalItems: 16
+      totalItems: 16,
+      hometown: null
     };
   },
   methods: {
     dtEditClick: props => alert("Click props:" + JSON.stringify(props)),
 
-    dtUpdateSort: function({ sortField, sort }) {
+    dtUpdateSort: function ({ sortField, sort }) {
       const sortedData = orderBy(initialData, [sortField],[sort]);
       const start = (this.currentPage -1) * this.itemsPerPage;
       const end = this.currentPage * this.itemsPerPage;
@@ -472,7 +508,7 @@ export default {
       console.log('load data based on new sort', this.currentPage)
     },
 
-    updateItemsPerPage: function(itemsPerPage) {
+    updateItemsPerPage: function (itemsPerPage) {
       this.itemsPerPage = itemsPerPage
       if (itemsPerPage >= initialData.length) {
         this.data = initialData
@@ -482,7 +518,7 @@ export default {
       console.log('load data with new items per page number', itemsPerPage)
     },
 
-    changePage: function(currentPage) {
+    changePage: function (currentPage) {
       this.currentPage = currentPage
       const start = (currentPage -1) * this.itemsPerPage;
       const end = currentPage * this.itemsPerPage;
@@ -490,10 +526,14 @@ export default {
       console.log('load data for the new page', currentPage)
     },
 
-    updateCurrentPage: function(currentPage) {
+    updateCurrentPage: function (currentPage) {
       this.currentPage = currentPage
       console.log('update current page without need to load data', currentPage)
+    },
+
+    changeHometown: function (event, id) {
+      this.data =this.data.map(item => item.id === id ? {...item, hometown: event.target.value }: item)
     }
-  }
+  },
 };
 </script>
