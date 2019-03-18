@@ -40,17 +40,18 @@ export default {
 
 
 ## DataTable Header Fields Props
-| Name              | Type     | Required | Default | Description                                                                                                     |
-|-------------------|----------|----------|---------|-----------------------------------------------------------------------------------------------------------------|
-| name              | string   | true     | null    | Attribute that the DataTable will try to retrieve the value from the data item.                                 |
-| label             | string   | true     | null    | Attribute that the DataTable will show on the header for the column.                                            |
-| sortable          | boolean  | false    | false   | Define if that column will be sortable or not. In case the value is true, two arrows will be show on the header.|
-| format            | function | false    | null    | A function used to format a value in each line of the DataTable's body.                                         |
-| width             | string   | false    | null    | String used to define column width. Only used when 'tableHeight' props is informed.                             |
-| __slot:actions    | string   | false    | null    | Used to create a new column to be used for buttons or any kind of action. You have to inform the slot 'actions' and it will be rendered inside each line. |
-| __slot:checkboxes | string   | false    | null    | Used to create a column with a checkbox. Every time you check or uncheck an item an event is emited.            |    
+| Name              | Type             | Required | Default | Description                                                                                                     |
+|-------------------|------------------|----------|---------|-----------------------------------------------------------------------------------------------------------------|
+| name              | string           | true     | null    | Attribute that the DataTable will try to retrieve the value from the data item.                                 |
+| label             | string           | true     | null    | Attribute that the DataTable will show on the header for the column.                                            |
+| sortable          | boolean          | false    | false   | Define if that column will be sortable or not. In case the value is true, two arrows will be show on the header.|
+| customElement     | boolean |string  | false    | null    | If sent a `true` the DataTable will render a slot with the same `name` attribute. To customise the slot name, send an `string` with the whised name|
+| format            | function         | false    | null    | A function used to format a value in each line of the DataTable's body.                                         |
+| width             | string           | false    | null    | String used to define column width. Only used when 'tableHeight' props is informed.                             |
+| __slot:actions    | string           | false    | null    | Used to create a new column to be used for buttons or any kind of action. You have to inform the slot 'actions' and it will be rendered inside each line. |
+| __slot:checkboxes | string           | false    | null    | Used to create a column with a checkbox. Every time you check or uncheck an item an event is emited.            |    
 
-## DataTable Css Props Structure
+        ## DataTable Css Props Structure
 | Name                 | Type     | Required | Default | Description                                                                                                     |
 |----------------------|----------|----------|---------|------------------------------------------------------------------------------------------------------------|
 | table                | string   | false    | ''      | Applied on the table element.                                                                              |
