@@ -1,0 +1,38 @@
+{
+  "minimum": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name" }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
+  "sortable": {
+    "headerFields" : [
+      { "name": "id" },
+      { "name": "name", "sortable": true }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
+  "customElement": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customElement": true }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  }
+}
