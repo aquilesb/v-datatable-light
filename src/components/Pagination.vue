@@ -102,13 +102,13 @@ export default {
     css: {
       type: Object,
       default: () => ({
-        paginationItem: '',
-        moveFirstPage: '',
-        movePreviousPage: '',
-        moveNextPage: '',
-        moveLastPage: '',
-        pageNumber: '',
-        pageBtn: '',
+        paginationItem: 'pagination-item',
+        moveFirstPage: 'move-first-page',
+        movePreviousPage: 'move-previous-page',
+        moveNextPage: 'move-next-page',
+        moveLastPage: 'move-last-page',
+        pageNumber: 'page-number',
+        pageBtn: 'page-btn',
       })
     }
 	},
@@ -148,7 +148,7 @@ export default {
 	},
 	methods: {
 		pageClass: function (currentPage) {
-			return this.currPage === currentPage ? 'pagination-item selected' : 'pagination-item'
+			return this.currPage === currentPage ? `${this.css.paginationItem} selected` : this.css.paginationItem
 		},
 		changePage: function (pageToMove) {
 			if (pageToMove <= this.lastPage && pageToMove >= 1 && pageToMove !== this.currPage) {
@@ -161,10 +161,10 @@ export default {
 				return this.currPage === 1
 			case 'previousPage':
 				return this.currPage === 1
-			case 'lastPage':
-				return this.currPage === this.lastPage
+      case 'lastPage':
+				return this.currPage === this.lastPage || !this.totalItems || this.currPage * this.itemsPerPage >= this.totalItems
 			case 'nextPage':
-				return this.currPage === this.lastPage
+				return this.currPage === this.lastPage || !this.totalItems || this.currPage * this.itemsPerPage >= this.totalItems
 			}
 		},
 		checkCurrentPageExist: function () {
