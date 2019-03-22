@@ -1,5 +1,6 @@
 
 # v-datatable-light
+[![Build Status](https://travis-ci.org/aquilesb/v-datatable-light.svg?branch=master)](https://travis-ci.org/aquilesb/v-datatable-light)
 [![GitHub open issues](https://img.shields.io/github/issues/aquilesb/v-datatable-light.svg)](https://github.com/aquilesb/v-datatable-light/issues)
 [![Npm version](https://img.shields.io/npm/v/v-datatable-light.svg)](https://www.npmjs.com/package/v-datatable-light)
 ![GitHub](https://img.shields.io/github/license/aquilesb/v-datatable-light.svg)
