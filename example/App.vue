@@ -505,7 +505,6 @@ export default {
       const start = (this.currentPage -1) * this.itemsPerPage;
       const end = this.currentPage * this.itemsPerPage;
       this.data = sortedData.slice(start, end)
-      console.log('load data based on new sort', this.currentPage)
     },
 
     updateItemsPerPage: function (itemsPerPage) {
@@ -515,7 +514,6 @@ export default {
       } else {
         this.data = initialData.slice(0, itemsPerPage)
       }
-      console.log('load data with new items per page number', itemsPerPage)
     },
 
     changePage: function (currentPage) {
@@ -523,12 +521,10 @@ export default {
       const start = (currentPage -1) * this.itemsPerPage;
       const end = currentPage * this.itemsPerPage;
       this.data = initialData.slice(start, end)
-      console.log('load data for the new page', currentPage)
     },
 
     updateCurrentPage: function (currentPage) {
       this.currentPage = currentPage
-      console.log('update current page without need to load data', currentPage)
     },
 
     changeHometown: function (event, id) {

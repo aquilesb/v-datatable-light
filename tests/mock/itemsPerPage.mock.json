@@ -1,0 +1,14 @@
+{
+  "singleOptionList": {
+    "listItemsPerPage": [10]
+  },
+  "20Selected": {
+    "listItemsPerPage": [10,20,30],
+    "itemsPerPage": 20
+  },
+  "cssStructure": {
+    "css": {
+      "select": "main-select"
+    }
+  }
+}

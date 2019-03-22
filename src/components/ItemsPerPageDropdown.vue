@@ -1,7 +1,6 @@
 <template>
   <select
-    class="v-datatable-light-items-per-page"
-    :class="css.select"
+    :class="['v-datatable-light-items-per-page', css.select]"
     @change="onUpdate"
   >
     <option
@@ -35,7 +34,7 @@ export default {
 	},
 	methods: {
 		onUpdate: function (event) {
-			this.$emit('onUpdate', parseInt(event.target.value, 10))
+			this.$emit('onUpdate', event.target.value)
 		}
 	}
 

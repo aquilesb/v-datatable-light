@@ -1,0 +1,196 @@
+{
+  "minimum": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name" }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
+  "sortable": {
+    "headerFields" : [
+      { "name": "id" },
+      { "name": "name", "sortable": true }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
+  "customElement": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customElement": true }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
+  "checkboxes": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customElement": true },
+      "__slot:checkboxes"
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
+  "checkboxesSelect": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customElement": true },
+      "__slot:checkboxes"
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      },
+      {
+        "id": 39,
+        "name": "test 2"
+      }
+    ]
+  },
+  "checkboxesTrackBy": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customElement": true },
+      "__slot:checkboxes"
+    ],
+    "data": [
+      {
+        "__UIID": 47,
+        "name": "test"
+      },
+      {
+        "__UIID": 39,
+        "name": "test 2"
+      }
+    ]
+  },
+  "actions": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customElement": true },
+      "__slot:actions"
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
+  "isLoading": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name" }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ],
+    "isLoading": true
+  },
+  "sortField": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "sortable": true }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ],
+    "sortField": "name",
+    "sort": "asc"
+  },
+  "notFoundMsg": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "sortable": true }
+    ],
+    "data": [],
+    "notFoundMsg": "nothing found"
+  },
+  "cssStructure": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "sortable": true },
+      "__slot:checkboxes"
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ],
+    "css": {
+      "table": "table-test",
+      "thead": "thead-test",
+      "theadTr": "thead-tr-test",
+      "theadTh": "thead-th-test",
+      "tbody": "tbody-test",
+      "tbodyTr": "tbody-tr-test",
+      "tbodyTrSpinner": "tbody-tr-spinner-test",
+      "tbodyTd": "tbody-td-test",
+      "tbodyTdSpinner": "tbody-td-spinner-test",
+      "tfoot": "tfoot-test",
+      "tfootTd": "tfoot-td-test",
+      "tfootTr": "tfoot-tr-test",
+      "footer": "footer-test",
+      "thWrapper": "th-wrapper-test",
+      "thWrapperCheckboxes": "th-wrapper-checkboxes-test",
+      "arrowsWrapper": "arrows-wrapper-test",
+      "arrowUp": "arrow-up-test",
+      "arrowDown": "arrow-down-test",
+      "checkboxHeader": "checkbox-header-test",
+      "checkbox": "checkbox-test",
+      "notFoundTr": "not-found-tr-test",
+      "notFoundTd": "not-found-td-test"
+   }
+  },
+  "tableHeight": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name" }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ],
+    "tableHeight": "400px"
+  },
+  "tableHeightWidth": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "width": "100px" }
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ],
+    "tableHeight": "400px"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "simple": {
+    "totalItems": 50,
+    "itemsPerPage": 10
+  },
+  "40totalItems": {
+    "totalItems": 40,
+    "itemsPerPage": 10,
+    "page": 2
+  },
+  "30totalItems": {
+    "totalItems": 30,
+    "itemsPerPage": 10
+  },
+  "20totalItems": {
+    "totalItems": 20,
+    "itemsPerPage": 10,
+    "page": 2
+  },
+  "11totalItems": {
+    "totalItems": 11,
+    "itemsPerPage": 10
+  },
+  "10totalItems": {
+    "totalItems": 10,
+    "itemsPerPage": 10
+  },
+  "9totalItems": {
+    "totalItems": 9,
+    "itemsPerPage": 10
+  },
+  "0totalItems": {
+    "totalItems": 0,
+    "itemsPerPage": 10
+  },
+  "moveLastPageDisable": {
+    "totalItems": 60,
+    "itemsPerPage": 10,
+    "moveLastPage": false
+  },
+  "moveFirstPageDisable": {
+    "totalItems": 60,
+    "itemsPerPage": 10,
+    "moveFirstPage": false
+  },
+  "moveNextPageDisable": {
+    "totalItems": 60,
+    "itemsPerPage": 10,
+    "moveNextPage": false
+  },
+  "movePreviousPageDisable": {
+    "totalItems": 60,
+    "itemsPerPage": 10,
+    "movePreviousPage": false
+  },
+  "cssStructure": {
+    "totalItems": 60,
+    "itemsPerPage": 10,
+    "css": {
+      "paginationItem": "pagination-item-test",
+      "moveFirstPage": "move-first-page-test",
+      "movePreviousPage": "move-previous-page-test",
+      "moveNextPage": "move-next-page-test",
+      "moveLastPage": "move-last-page-test",
+      "pageNumber": "page-number-test",
+      "pageBtn": "page-btn-test"
+   }
+  },
+  "60totalItemPage3": {
+    "totalItems": 50,
+    "itemsPerPage": 10,
+    "page": 3
+  },
+  "pageExist": {
+    "totalItems": 50,
+    "itemsPerPage": 10,
+    "page": 3
+  }
+}
