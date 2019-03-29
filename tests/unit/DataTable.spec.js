@@ -105,6 +105,25 @@ describe('DataTable.vue', () => {
       expect(tds.at(2).contains('.action-button')).toBe(true)
     })
 
+    it('should render the slot actions with the specified ID in the column in every row of tbody when the headerField contains __slot:actions:ActionID string ', () => {
+      const wrapper = mount(DataTable, {
+        propsData: mock.actionsID,
+        slots: {
+          actions: '<input type="button" class="action-button"/>',
+          ActionID: '<a href="#" class="my-link">Link</a>'
+        }
+      })
+      const ths = wrapper.findAll('.v-datatable-light thead tr th')
+      expect(ths).toHaveLength(4)
+      expect(ths.at(2).find('.thead-th').text()).toBe('')
+      expect(ths.at(3).find('.thead-th').text()).toBe('')
+
+      const tds = wrapper.findAll('.v-datatable-light tbody tr td')
+      expect(tds).toHaveLength(4)
+      expect(tds.at(2).contains('.my-link')).toBe(true)
+      expect(tds.at(3).contains('.action-button')).toBe(true)
+    })
+
     it('should render the slot spinner when the isLoading attribute is true ', () => {
       const spinner = '<div class="main-spinner"></div>'
       const wrapper = mount(DataTable, {

@@ -95,6 +95,20 @@
       }
     ]
   },
+  "actionsID": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customElement": true },
+      "__slot:actions:ActionID",
+      "__slot:actions"
+    ],
+    "data": [
+      {
+        "id": 47,
+        "name": "test"
+      }
+    ]
+  },
   "isLoading": {
     "headerFields" : [
       { "name": "id", "label": "Indentification" },

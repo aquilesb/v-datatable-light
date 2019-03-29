@@ -22,6 +22,7 @@
         value="Edit"
         @click="dtEditClick(props)"
       >
+      <a href="#" slot="actionFirst">Actions 2</a>
 
       <!-- Pagination component as a slot, but could be drag out from Database element -->
       <Pagination
@@ -463,6 +464,7 @@ export default {
           sortable: false,
           format: formatDate
         },
+        "__slot:actions:actionFirst",
         "__slot:actions"
       ],
       data: initialData.slice(0, 10),

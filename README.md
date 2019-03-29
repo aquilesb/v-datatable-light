@@ -49,7 +49,7 @@ export default {
 | customElement     | boolean |string  | false    | null    | If sent a `true` the DataTable will render a slot with the same `name` attribute. To customise the slot name, send an `string` with the whised name|
 | format            | function         | false    | null    | A function used to format a value in each line of the DataTable's body.                                         |
 | width             | string           | false    | null    | String used to define column width. Only used when 'tableHeight' props is informed.                             |
-| __slot:actions    | string           | false    | null    | Used to create a new column to be used for buttons or any kind of action. You have to inform the slot 'actions' and it will be rendered inside each line. |
+| __slot:actions    | string           | false    | null    | Used to create a new column to be used for buttons or any kind of action. You have to inform the slot 'actions' and it will be rendered inside each line. In case you want to use more than one action in the same table, you can inform different IDs for each one, and this ID will be used as the slot ID. The format would be: `__slot:actions:myActionID`, in this case `myActionID` is the slot ID|
 | __slot:checkboxes | string           | false    | null    | Used to create a column with a checkbox. Every time you check or uncheck an item an event is emited.            |    
 
         ## DataTable Css Props Structure
