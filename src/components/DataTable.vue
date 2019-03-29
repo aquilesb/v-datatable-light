@@ -52,7 +52,7 @@
             :style="getColumnWidth(key)">
             <slot
               v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'actions'"
-              :name="extractArgs(key.name)"
+              :name="extractActionID(key.name)"
               :row-data="item"
               :row-index="index"
             />
@@ -284,9 +284,12 @@ export default {
 
     isFieldSpecial: field => field.indexOf("__") > -1,
 
-    extractName: string => string.split(":")[0].trim(),
-
     extractArgs: string => string.split(":")[1],
+
+    extractActionID: string => {
+      const list = string.split(":")
+      return list.length === 3 ? list[2] : 'actions'
+    },
 
     getColumnWidth: function (item) {
       if (this.tableHeight) {
