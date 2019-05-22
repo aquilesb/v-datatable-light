@@ -23,6 +23,8 @@ export default {
 ```
 
 ## [Demo Sandbox](https://codesandbox.io/s/k0l3nrq9x3)
+## [Demo Sandbox 2](https://codesandbox.io/s/o5qlyw3l26)
+
 
 ## DataTable Props
 | Field              | Type    | Required | default | Description                                                                                                    |
