@@ -2,11 +2,11 @@
   <table :class="['v-datatable-light', css.table]">
     <thead :class="css.thead" :style="theadStyle">
       <tr :class="css.theadTr">
-        <th 
+        <th
           v-for="item in headers"
           :key="item.label"
           :class="headerItemClass(item, css.theadTh)"
-          :style="getColumnWidth(item)" 
+          :style="getColumnWidth(item)"
           >
           <div v-if="!isFieldSpecial(item.name)" :class="css.thWrapper" @click="orderBy(item.name)">
             {{ item.label }}
@@ -45,7 +45,7 @@
       </template>
       <template v-else-if="data.length">
         <tr v-for="(item, index) in data" :key="index" :class="css.tbodyTr">
-          <td 
+          <td
             v-for="key in headers"
             :key="`${index}-${key.name}`"
             :class="css.tbodyTd"
@@ -96,7 +96,7 @@
 </template>
 <script>
 export default {
-  name: "DataTable",
+  name: 'DataTable',
   props: {
     headerFields: {
       type: Array,
@@ -124,46 +124,46 @@ export default {
     },
     trackBy: {
       type: String,
-      default: "id"
+      default: 'id'
     },
     css: {
       type: Object,
       default: () => ({
-        table: "",
-        thead: "thead",
-        theadTr: "thead-tr",
-        theadTh: "thead-th",
-        tbody: "tbody",
-        tbodyTr: "tbody-tr",
-        tbodyTrSpinner: "tbody-tr-spinner",
-        tbodyTd: "tbody-td",
-        tbodyTdSpinner: "tbody-td-spinner",
-        tfoot: "tfoot",
-        tfootTd: "tfoot-td",
-        tfootTr: "tfoot-tr",
-        footer: "footer",
-        thWrapper: "th-wrapper",
-        thWrapperCheckboxes: "th-wrapper-checkboxes",
-        arrowsWrapper: "arrows-wrapper",
-        arrowUp: "arrow-up",
-        arrowDown: "arrow-down",
-        checkboxHeader: "checkbox-header",
-        checkbox: "checkbox",
-        notFoundTr: "not-found-tr",
-        notFoundTd: "not-found-td"
+        table: '',
+        thead: 'thead',
+        theadTr: 'thead-tr',
+        theadTh: 'thead-th',
+        tbody: 'tbody',
+        tbodyTr: 'tbody-tr',
+        tbodyTrSpinner: 'tbody-tr-spinner',
+        tbodyTd: 'tbody-td',
+        tbodyTdSpinner: 'tbody-td-spinner',
+        tfoot: 'tfoot',
+        tfootTd: 'tfoot-td',
+        tfootTr: 'tfoot-tr',
+        footer: 'footer',
+        thWrapper: 'th-wrapper',
+        thWrapperCheckboxes: 'th-wrapper-checkboxes',
+        arrowsWrapper: 'arrows-wrapper',
+        arrowUp: 'arrow-up',
+        arrowDown: 'arrow-down',
+        checkboxHeader: 'checkbox-header',
+        checkbox: 'checkbox',
+        notFoundTr: 'not-found-tr',
+        notFoundTd: 'not-found-td'
       })
     },
     tableHeight: {
       type: String,
-      default: null,
+      default: null
     },
     defaultColumnWidth: {
       type: String,
-      default: '150px',
+      default: '150px'
     }
   },
 
-  data: function() {
+  data: function () {
     return {
       sortedField: this.sortField,
       sortedDir: this.sort,
@@ -171,32 +171,32 @@ export default {
       loading: this.isLoading,
       checkedAll: false,
       itemsChecked: []
-    };
+    }
   },
 
   computed: {
-    hasSlots: function() {
+    hasSlots: function () {
       return (
         this.$slots.pagination !== undefined ||
         this.$slots.ItemsPerPage !== undefined
-      );
+      )
     },
 
-    headers: function() {
+    headers: function () {
       if (
         this.headerFields &&
         this.headerFields.constructor === Array &&
         this.headerFields.length
       ) {
         return Object.keys(this.headerFields).map(key => {
-          const field = this.headerFields[key];
-          if (typeof field === "string") {
-            return { label: field, name: field };
+          const field = this.headerFields[key]
+          if (typeof field === 'string') {
+            return { label: field, name: field }
           }
-          return field;
-        });
+          return field
+        })
       }
-      return [];
+      return []
     },
     tbodyStyle: function () {
       if (this.tableHeight) {
@@ -209,85 +209,85 @@ export default {
       return null
     },
     theadStyle: function () {
-      return this.tableHeight ? { display: 'block'} : null
+      return this.tableHeight ? { display: 'block' } : null
     }
   },
 
   methods: {
-    arrowsWrapper: function(field, className) {
+    arrowsWrapper: function (field, className) {
       if (this.sortedField === field && this.sortedDir) {
-        return `${className} centralized`;
+        return `${className} centralized`
       }
-      return className;
+      return className
     },
 
-    updateData: function() {
+    updateData: function () {
       const params = {
         sortField: this.sortedField,
         sort: this.sortedDir
-      };
+      }
 
-      this.$emit("onUpdate", params);
+      this.$emit('onUpdate', params)
     },
 
-    orderBy: function(field) {
+    orderBy: function (field) {
       if (this.isFieldSortable(field)) {
         if (this.sortedField === field) {
-          this.sortedDir = this.sortedDir === "asc" ? "desc" : "asc";
+          this.sortedDir = this.sortedDir === 'asc' ? 'desc' : 'asc'
         } else {
-          this.sortedDir = "desc";
-          this.sortedField = field;
+          this.sortedDir = 'desc'
+          this.sortedField = field
         }
-        this.updateData();
+        this.updateData()
       }
     },
 
-    checkAll: function() {
-      this.checkedAll = !this.checkedAll;
+    checkAll: function () {
+      this.checkedAll = !this.checkedAll
       if (this.checkedAll) {
-        this.itemsChecked = this.data;
+        this.itemsChecked = this.data
       } else {
-        this.itemsChecked = [];
+        this.itemsChecked = []
       }
-      this.$emit("onCheckAll", this.itemsChecked);
+      this.$emit('onCheckAll', this.itemsChecked)
     },
 
-    checkItem: function(item) {
+    checkItem: function (item) {
       const found = this.itemsChecked.find(
         itemChecked => itemChecked[this.trackBy] === item[this.trackBy]
-      );
+      )
       if (found) {
         this.itemsChecked = this.itemsChecked.filter(
           itemChecked => itemChecked[this.trackBy] !== item[this.trackBy]
-        );
-        this.$emit("onUncheckedItem", item);
+        )
+        this.$emit('onUncheckedItem', item)
       } else {
-        this.itemsChecked = [...this.itemsChecked, item];
-        this.$emit("onCheckedItem", item);
+        this.itemsChecked = [...this.itemsChecked, item]
+        this.$emit('onCheckedItem', item)
       }
     },
 
-    isCheckedItem: function(item) {
+    isCheckedItem: function (item) {
       return !!this.itemsChecked.find(
         itemChecked => itemChecked[this.trackBy] === item[this.trackBy]
-      );
+      )
     },
 
-    isFieldSortable: function(field) {
-      const foundHeader = this.headerFields.find(item => item.name === field);
-      return foundHeader && foundHeader.sortable;
+    isFieldSortable: function (field) {
+      const foundHeader = this.headerFields.find(item => item.name === field)
+      return foundHeader && foundHeader.sortable
     },
 
-    headerItemClass: function(item, className) {
-      return item && item.sortable ? className : `${className} no-sortable`;
+    headerItemClass: function (item, className) {
+      return item && item.sortable ? className : `${className} no-sortable`
     },
 
-    isFieldSpecial: field => field.indexOf("__") > -1,
+    isFieldSpecial: field => field.indexOf('__') > -1,
 
-    extractArgs: string => string.split(":")[1],
+    extractArgs: string => string.split(':')[1],
 
     extractActionID: string => {
-      const list = string.split(":")
+      const list = string.split(':')
       return list.length === 3 ? list[2] : 'actions'
     },
 
@@ -302,5 +302,5 @@ export default {
 
     customElementName: ({ customElement, name }) => typeof customElement === 'string' ? customElement : name
   }
-};
+}
 </script>

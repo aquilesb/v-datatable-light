@@ -69,33 +69,33 @@
 </template>
 <script>
 export default {
-	name: 'DataTablePagination',
-	props: {
-		totalItems: {
-			type: Number,
-			required: true
-		},
-		itemsPerPage: {
-			type: Number,
-			default: 10
-		},
-		page: {
-			type: Number,
-			default: 1
-		},
-		moveLastPage: {
+  name: 'DataTablePagination',
+  props: {
+    totalItems: {
+      type: Number,
+      required: true
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 10
+    },
+    page: {
+      type: Number,
+      default: 1
+    },
+    moveLastPage: {
       type: Boolean,
       default: true
     },
-		moveFirstPage:  {
+    moveFirstPage: {
       type: Boolean,
       default: true
     },
-		moveNextPage:  {
+    moveNextPage: {
       type: Boolean,
       default: true
     },
-		movePreviousPage:  {
+    movePreviousPage: {
       type: Boolean,
       default: true
     },
@@ -108,71 +108,71 @@ export default {
         moveNextPage: 'move-next-page',
         moveLastPage: 'move-last-page',
         pageNumber: 'page-number',
-        pageBtn: 'page-btn',
+        pageBtn: 'page-btn'
       })
     }
-	},
-	data: function () {
-		return {
-			perPage: this.itemsPerPage,
-			currPage: this.page
-		}
-	},
-	computed: {
-		qntPages: function () {
-			const nrPages = this.lastPage
-			if (nrPages > 4) {
-				if (this.currPage <= 3) {
-					return Array.apply(null, { length: 5 }).map((_, index) => index + 1)
-				} else if (this.currPage + 2 >= nrPages) {
-					return Array.apply(null, { length: nrPages }).map((_, index) => index + 1).slice(nrPages - 5, nrPages)
-				} else {
-					return Array.apply(null, { length: nrPages }).map((_, index) => index + 1).slice(this.currPage - 3, this.currPage + 2)
-				}
-			} else {
-				return Array.apply(null, { length: nrPages }).map((_, index) => index + 1)
-			}
-		},
-		lastPage: function () {
-			return Math.ceil(this.totalItems / this.perPage)
-		}
-	},
-	watch: {
-		page: function (newPage) {
-			this.currPage = newPage
-		},
-		itemsPerPage: function (newItemsPerPage) {
-			this.perPage = newItemsPerPage
-			this.checkCurrentPageExist()
-		}
-	},
-	methods: {
-		pageClass: function (currentPage) {
-			return this.currPage === currentPage ? `${this.css.paginationItem} selected` : this.css.paginationItem
-		},
-		changePage: function (pageToMove) {
-			if (pageToMove <= this.lastPage && pageToMove >= 1 && pageToMove !== this.currPage) {
-				this.$emit('onUpdate', pageToMove)
-			}
-		},
-		isActionDisabled: function (action) {
-			switch (action) {
-			case 'firstPage':
-				return this.currPage === 1
-			case 'previousPage':
-				return this.currPage === 1
-      case 'lastPage':
-				return this.currPage === this.lastPage || !this.totalItems || this.currPage * this.itemsPerPage >= this.totalItems
-			case 'nextPage':
-				return this.currPage === this.lastPage || !this.totalItems || this.currPage * this.itemsPerPage >= this.totalItems
-			}
-		},
-		checkCurrentPageExist: function () {
-			if (this.qntPages.indexOf(this.currPage) === -1) {
-				const nextPage = this.qntPages.length ? this.qntPages.length : 0
-				this.$emit('updateCurrentPage', nextPage)
-			}
-		}
-	}
+  },
+  data: function () {
+    return {
+      perPage: this.itemsPerPage,
+      currPage: this.page
+    }
+  },
+  computed: {
+    qntPages: function () {
+      const nrPages = this.lastPage
+      if (nrPages > 4) {
+        if (this.currPage <= 3) {
+          return Array.apply(null, { length: 5 }).map((_, index) => index + 1)
+        } else if (this.currPage + 2 >= nrPages) {
+          return Array.apply(null, { length: nrPages }).map((_, index) => index + 1).slice(nrPages - 5, nrPages)
+        } else {
+          return Array.apply(null, { length: nrPages }).map((_, index) => index + 1).slice(this.currPage - 3, this.currPage + 2)
+        }
+      } else {
+        return Array.apply(null, { length: nrPages }).map((_, index) => index + 1)
+      }
+    },
+    lastPage: function () {
+      return Math.ceil(this.totalItems / this.perPage)
+    }
+  },
+  watch: {
+    page: function (newPage) {
+      this.currPage = newPage
+    },
+    itemsPerPage: function (newItemsPerPage) {
+      this.perPage = newItemsPerPage
+      this.checkCurrentPageExist()
+    }
+  },
+  methods: {
+    pageClass: function (currentPage) {
+      return this.currPage === currentPage ? `${this.css.paginationItem} selected` : this.css.paginationItem
+    },
+    changePage: function (pageToMove) {
+      if (pageToMove <= this.lastPage && pageToMove >= 1 && pageToMove !== this.currPage) {
+        this.$emit('onUpdate', pageToMove)
+      }
+    },
+    isActionDisabled: function (action) {
+      switch (action) {
+        case 'firstPage':
+          return this.currPage === 1
+        case 'previousPage':
+          return this.currPage === 1
+        case 'lastPage':
+          return this.currPage === this.lastPage || !this.totalItems || this.currPage * this.itemsPerPage >= this.totalItems
+        case 'nextPage':
+          return this.currPage === this.lastPage || !this.totalItems || this.currPage * this.itemsPerPage >= this.totalItems
+      }
+    },
+    checkCurrentPageExist: function () {
+      if (this.qntPages.indexOf(this.currPage) === -1) {
+        const nextPage = this.qntPages.length ? this.qntPages.length : 0
+        this.$emit('updateCurrentPage', nextPage)
+      }
+    }
+  }
 }
 </script>
