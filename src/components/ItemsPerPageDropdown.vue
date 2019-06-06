@@ -15,15 +15,15 @@
 </template>
 <script>
 export default {
-	name: 'DataTableItemsDropdown',
-	props: {
-		listItemsPerPage: {
-			type: Array,
-			default: () => [10, 30, 50]
-		},
-		itemsPerPage: {
-			type: Number,
-			default: 10
+  name: 'DataTableItemsDropdown',
+  props: {
+    listItemsPerPage: {
+      type: Array,
+      default: () => [10, 30, 50]
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 10
     },
     css: {
       type: Object,
@@ -31,12 +31,12 @@ export default {
         select: ''
       })
     }
-	},
-	methods: {
-		onUpdate: function (event) {
-			this.$emit('onUpdate', event.target.value)
-		}
-	}
+  },
+  methods: {
+    onUpdate: function (event) {
+      this.$emit('onUpdate', event.target.value)
+    }
+  }
 
 }
 </script>

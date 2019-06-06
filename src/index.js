@@ -3,7 +3,7 @@ import ItemsPerPageDropdown from './components/ItemsPerPageDropdown'
 import Pagination from './components/Pagination'
 
 export {
-	DataTable,
-	ItemsPerPageDropdown,
-	Pagination
+  DataTable,
+  ItemsPerPageDropdown,
+  Pagination
 }
