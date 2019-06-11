@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     onUpdate: function (event) {
-      this.$emit('onUpdate', event.target.value)
+      this.$emit('on-update', event.target.value)
     }
   }
 
