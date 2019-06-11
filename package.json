@@ -9,7 +9,7 @@
     "build": "vue-cli-service build --name v-datatable-light --entry ./src/index.js --target lib",
     "lint": "vue-cli-service lint",
     "prepublishOnly": "npm run lint && npm run build",
-    "test:unit": "vue-cli-service test:unit"
+    "test": "vue-cli-service test:unit"
   },
   "dependencies": {},
   "devDependencies": {
