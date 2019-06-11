@@ -231,7 +231,7 @@ describe('Pagination.vue', () => {
 
       pageBtn.trigger('click')
       const emmited = wrapper.emitted()
-      expect(emmited.onUpdate).toEqual([[1]])
+      expect(emmited['on-update']).toEqual([[1]])
     })
 
     it('should should emmit onUpdate and return the page 2 when click on move-previous-page', () => {
@@ -247,7 +247,7 @@ describe('Pagination.vue', () => {
 
       pageBtn.trigger('click')
       const emmited = wrapper.emitted()
-      expect(emmited.onUpdate).toEqual([[2]])
+      expect(emmited['on-update']).toEqual([[2]])
     })
 
     it('should should emmit onUpdate and return the page 4 when click on move-next-page', () => {
@@ -263,7 +263,7 @@ describe('Pagination.vue', () => {
 
       pageBtn.trigger('click')
       const emmited = wrapper.emitted()
-      expect(emmited.onUpdate).toEqual([[4]])
+      expect(emmited['on-update']).toEqual([[4]])
     })
 
     it('should should emmit onUpdate and return the page 5 when click on move-last-page', () => {
@@ -279,7 +279,7 @@ describe('Pagination.vue', () => {
 
       pageBtn.trigger('click')
       const emmited = wrapper.emitted()
-      expect(emmited.onUpdate).toEqual([[5]])
+      expect(emmited['on-update']).toEqual([[5]])
     })
 
     it('should emmit updateCurrentPage returning the new current page when props change and the current page does not exist more', () => {
@@ -290,7 +290,7 @@ describe('Pagination.vue', () => {
       wrapper.setProps({ itemsPerPage: 30 })
 
       const emmited = wrapper.emitted()
-      expect(emmited.updateCurrentPage).toEqual([[2]])
+      expect(emmited['update-current-page']).toEqual([[2]])
     })
   })
 })

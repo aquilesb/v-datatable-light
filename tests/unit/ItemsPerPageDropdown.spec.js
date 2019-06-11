@@ -46,7 +46,7 @@ describe('Pagination.vue', () => {
         [wrapper.findAll('option').at(0).text()]
       ]
 
-      expect(emitted.onUpdate).toEqual(expectedResult)
+      expect(emitted[['on-update']]).toEqual(expectedResult)
     })
   })
 })
