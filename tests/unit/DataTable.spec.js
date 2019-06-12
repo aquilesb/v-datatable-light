@@ -349,8 +349,8 @@ describe('DataTable.vue', () => {
       thWrapper.trigger('click')
 
       const emitted = wrapper.emitted()
-      expect(emitted.onUpdate).toBeTruthy()
-      expect(emitted.onUpdate).toEqual([[{ sortField: 'name', sort: 'desc' }]])
+      expect(emitted['on-update']).toBeTruthy()
+      expect(emitted['on-update']).toEqual([[{ sortField: 'name', sort: 'desc' }]])
     })
 
     it("should emmit onCheckAll event when user click on theader's checkbox", () => {
@@ -363,8 +363,8 @@ describe('DataTable.vue', () => {
       checkboxHeader.trigger('click')
 
       const emitted = wrapper.emitted()
-      expect(emitted.onCheckAll).toBeTruthy()
-      expect(emitted.onCheckAll).toEqual([[mock.checkboxesSelect.data]])
+      expect(emitted['on-check-all']).toBeTruthy()
+      expect(emitted['on-check-all']).toEqual([[mock.checkboxesSelect.data]])
     })
 
     it("should emmit onCheckedItem and onUncheckedItem events when user click on tbody's checkbox to check and uncheck", () => {
@@ -381,10 +381,10 @@ describe('DataTable.vue', () => {
       checkbox.at(0).trigger('click')
 
       const emitted = wrapper.emitted()
-      expect(emitted.onCheckedItem).toBeTruthy()
-      expect(emitted.onCheckedItem).toEqual([[mock.checkboxesSelect.data[0]]])
-      expect(emitted.onUncheckedItem).toBeTruthy()
-      expect(emitted.onUncheckedItem).toEqual([[mock.checkboxesSelect.data[0]]])
+      expect(emitted['on-checked-item']).toBeTruthy()
+      expect(emitted['on-checked-item']).toEqual([[mock.checkboxesSelect.data[0]]])
+      expect(emitted['on-unchecked-item']).toBeTruthy()
+      expect(emitted['on-unchecked-item']).toEqual([[mock.checkboxesSelect.data[0]]])
     })
   })
 })

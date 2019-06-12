@@ -152,7 +152,7 @@ export default {
     },
     changePage: function (pageToMove) {
       if (pageToMove <= this.lastPage && pageToMove >= 1 && pageToMove !== this.currPage) {
-        this.$emit('onUpdate', pageToMove)
+        this.$emit('on-update', pageToMove)
       }
     },
     isActionDisabled: function (action) {
@@ -170,7 +170,7 @@ export default {
     checkCurrentPageExist: function () {
       if (this.qntPages.indexOf(this.currPage) === -1) {
         const nextPage = this.qntPages.length ? this.qntPages.length : 0
-        this.$emit('updateCurrentPage', nextPage)
+        this.$emit('update-current-page', nextPage)
       }
     }
   }

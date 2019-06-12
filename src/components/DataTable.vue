@@ -227,7 +227,7 @@ export default {
         sort: this.sortedDir
       }
 
-      this.$emit('onUpdate', params)
+      this.$emit('on-update', params)
     },
 
     orderBy: function (field) {
@@ -249,7 +249,7 @@ export default {
       } else {
         this.itemsChecked = []
       }
-      this.$emit('onCheckAll', this.itemsChecked)
+      this.$emit('on-check-all', this.itemsChecked)
     },
 
     checkItem: function (item) {
@@ -260,10 +260,10 @@ export default {
         this.itemsChecked = this.itemsChecked.filter(
           itemChecked => itemChecked[this.trackBy] !== item[this.trackBy]
         )
-        this.$emit('onUncheckedItem', item)
+        this.$emit('on-unchecked-item', item)
       } else {
         this.itemsChecked = [...this.itemsChecked, item]
-        this.$emit('onCheckedItem', item)
+        this.$emit('on-checked-item', item)
       }
     },
 
