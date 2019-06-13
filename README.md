@@ -21,14 +21,14 @@ export default {
   }
 }
 ```
+## [Demo Sandbox](https://codesandbox.io/s/o5qlyw3l26)
+## [Demo Sandbox 2](https://codesandbox.io/s/k0l3nrq9x3)
 
-## [Demo Sandbox](https://codesandbox.io/s/k0l3nrq9x3)
-## [Demo Sandbox 2](https://codesandbox.io/s/o5qlyw3l26)
 
 
 ## DataTable Props
-| Field              | Type    | Required | default | Description                                                                                                    |
-|--------------------|---------|----------|---------|----------------------------------------------------------------------------------------------------------------|
+| Field              | Type    | Required | default | Description|
+|--------------------|---------|----------|---------|----------------------------------------------------------------------|
 | headerFields       | array   | true     | null    | Definition of each column of the table. In each item of this array you will define how this column will behave.|
 | data               | array   | true     | null    | Array of objects that will feed the datatable.                                                                 |
 | isLoading          | boolean | false    | false   | Flag to indicate to datatable if the data is loading. If it is, your spinner slot will be show.                |
@@ -41,6 +41,13 @@ export default {
 | defaultColumnWidth | string  | false    | '150px' | Set the default column with, only used when 'tableHeight' prop is informed.                                    |
 
 
+## DataTable Events
+| Event Name          | Description| Params |
+|---------------------|------------|--------|
+|on-update| Called every time the the DataTable is sorted | Object with `sortField` and `sort` attributes. Where `sortField` is the column name and sort is the direction (eg `asc`, `desc`)|
+|on-check-all| Called when the checkbox on the DataTable header is checked or unchecked | If the checkbox is checked it send the DataTable data list, if it is not, an empty array|
+|on-checked-item | Called when a checkbox row is checked | Object with the row's data|
+|on-unchecked-item| Called when a checkbox row is unchecked | Object with the row's data|
 
 ## DataTable Header Fields Props
 | Name              | Type             | Required | Default | Description                                                                                                     |
@@ -79,7 +86,6 @@ export default {
 | checkbox             | string   | false    | ''      | Applied on the table tbody checkbox elements.                                                              |
 | notFoundTr           | string   | false    | ''      | Applied on the table tbody tr element when the data is empty.                                              |
 | notFoundTd           | string   | false    | ''      | Applied on the table tbody td element when the data is empty.                                              |
-
 
 ## Pagination Props
 | Name             | Type    | Required | Default | Description                                                 |
