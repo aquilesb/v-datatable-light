@@ -114,7 +114,10 @@ export default {
 | listItemsPerPage | array  | false    | [10, 20, 30] | An array of numbers which the user will have the posibily to change how many items are displayed in the DataTable. |
 | itemsPerPage     | number | false    | 10           | Current value of how many items are displayed on the DataTable.|
 
-
+## ItemsPerPageDropdown Events
+| Event Name          | Description| Params |
+|---------------------|------------|--------|
+|on-update| Called every time the user change the number of items per page | Next items per page number |	
 
 
 
