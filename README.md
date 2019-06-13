@@ -49,6 +49,7 @@ export default {
 |on-checked-item | Called when a checkbox row is checked | Object with the row's data|
 |on-unchecked-item| Called when a checkbox row is unchecked | Object with the row's data|
 
+
 ## DataTable Header Fields Props
 | Name              | Type             | Required | Default | Description                                                                                                     |
 |-------------------|------------------|----------|---------|-----------------------------------------------------------------------------------------------------------------|
@@ -60,6 +61,7 @@ export default {
 | width             | string           | false    | null    | String used to define column width. Only used when 'tableHeight' props is informed.                             |
 | __slot:actions    | string           | false    | null    | Used to create a new column to be used for buttons or any kind of action. You have to inform the slot 'actions' and it will be rendered inside each line. In case you want to use more than one action in the same table, you can inform different IDs for each one, and this ID will be used as the slot ID. The format would be: `__slot:actions:myActionID`, in this case `myActionID` is the slot ID|
 | __slot:checkboxes | string           | false    | null    | Used to create a column with a checkbox. Every time you check or uncheck an item an event is emited.            |    
+
 
 ## DataTable Css Props Structure
 | Name                 | Type     | Required | Default | Description                                                                                                     |
@@ -99,11 +101,21 @@ export default {
 | movePreviousPage | boolean | false    | true    | Flag to show or not the button to move to the previous page.|
 
 
+## Pagination Events
+| Event Name          | Description| Params |
+|---------------------|------------|--------|
+|on-update| Called every time the user click to change page. | Next page number |
+|update-current-page| Called every time the Pagination component change the current page. It is normally called when user increase the number of items to be shown per page and the current page does not exist anymore. In this case, the Pagination component will emit this event to let the user know which is the new current page. | Next page number |
+
+
 ## ItemsPerPageDropdown Props
-| Name             | Type   | Required | Default      | Description                                                                                               |
-|------------------|--------|----------|--------------|-----------------------------------------------------------------------------------------------------------|
+| Name             | Type   | Required | Default      | Description|
+|------------------|--------|----------|--------------|----------------------------------------------------------|
 | listItemsPerPage | array  | false    | [10, 20, 30] | An array of numbers which the user will have the posibily to change how many items are displayed in the DataTable. |
-| itemsPerPage     | number | false    | 10           | Current value of how many items are displayed on the DataTable.                                           |
+| itemsPerPage     | number | false    | 10           | Current value of how many items are displayed on the DataTable.|
+
+
+
 
 
 ## Installation
