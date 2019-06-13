@@ -21,14 +21,14 @@ export default {
   }
 }
 ```
+## [Demo Sandbox](https://codesandbox.io/s/o5qlyw3l26)
+## [Demo Sandbox 2](https://codesandbox.io/s/k0l3nrq9x3)
 
-## [Demo Sandbox](https://codesandbox.io/s/k0l3nrq9x3)
-## [Demo Sandbox 2](https://codesandbox.io/s/o5qlyw3l26)
 
 
 ## DataTable Props
-| Field              | Type    | Required | default | Description                                                                                                    |
-|--------------------|---------|----------|---------|----------------------------------------------------------------------------------------------------------------|
+| Field              | Type    | Required | default | Description|
+|--------------------|---------|----------|---------|----------------------------------------------------------------------|
 | headerFields       | array   | true     | null    | Definition of each column of the table. In each item of this array you will define how this column will behave.|
 | data               | array   | true     | null    | Array of objects that will feed the datatable.                                                                 |
 | isLoading          | boolean | false    | false   | Flag to indicate to datatable if the data is loading. If it is, your spinner slot will be show.                |
@@ -40,6 +40,14 @@ export default {
 | tableHeight        | string  | false    | null    | Used to have fixed header in  the table.                                                                       |
 | defaultColumnWidth | string  | false    | '150px' | Set the default column with, only used when 'tableHeight' prop is informed.                                    |
 
+
+## DataTable Events
+| Event Name          | Description| Params |
+|---------------------|------------|--------|
+|on-update| Called every time the the DataTable is sorted | Object with `sortField` and `sort` attributes. Where `sortField` is the column name and sort is the direction (eg `asc`, `desc`)|
+|on-check-all| Called when the checkbox on the DataTable header is checked or unchecked | If the checkbox is checked it send the DataTable data list, if it is not, an empty array|
+|on-checked-item | Called when a checkbox row is checked | Object with the row's data|
+|on-unchecked-item| Called when a checkbox row is unchecked | Object with the row's data|
 
 
 ## DataTable Header Fields Props
@@ -53,6 +61,7 @@ export default {
 | width             | string           | false    | null    | String used to define column width. Only used when 'tableHeight' props is informed.                             |
 | __slot:actions    | string           | false    | null    | Used to create a new column to be used for buttons or any kind of action. You have to inform the slot 'actions' and it will be rendered inside each line. In case you want to use more than one action in the same table, you can inform different IDs for each one, and this ID will be used as the slot ID. The format would be: `__slot:actions:myActionID`, in this case `myActionID` is the slot ID|
 | __slot:checkboxes | string           | false    | null    | Used to create a column with a checkbox. Every time you check or uncheck an item an event is emited.            |    
+
 
 ## DataTable Css Props Structure
 | Name                 | Type     | Required | Default | Description                                                                                                     |
@@ -80,7 +89,6 @@ export default {
 | notFoundTr           | string   | false    | ''      | Applied on the table tbody tr element when the data is empty.                                              |
 | notFoundTd           | string   | false    | ''      | Applied on the table tbody td element when the data is empty.                                              |
 
-
 ## Pagination Props
 | Name             | Type    | Required | Default | Description                                                 |
 |------------------|---------|----------|---------|-------------------------------------------------------------|
@@ -93,11 +101,24 @@ export default {
 | movePreviousPage | boolean | false    | true    | Flag to show or not the button to move to the previous page.|
 
 
+## Pagination Events
+| Event Name          | Description| Params |
+|---------------------|------------|--------|
+|on-update| Called every time the user click to change page. | Next page number |
+|update-current-page| Called every time the Pagination component change the current page. It is normally called when user increase the number of items to be shown per page and the current page does not exist anymore. In this case, the Pagination component will emit this event to let the user know which is the new current page. | Next page number |
+
+
 ## ItemsPerPageDropdown Props
-| Name             | Type   | Required | Default      | Description                                                                                               |
-|------------------|--------|----------|--------------|-----------------------------------------------------------------------------------------------------------|
+| Name             | Type   | Required | Default      | Description|
+|------------------|--------|----------|--------------|----------------------------------------------------------|
 | listItemsPerPage | array  | false    | [10, 20, 30] | An array of numbers which the user will have the posibily to change how many items are displayed in the DataTable. |
-| itemsPerPage     | number | false    | 10           | Current value of how many items are displayed on the DataTable.                                           |
+| itemsPerPage     | number | false    | 10           | Current value of how many items are displayed on the DataTable.|
+
+## ItemsPerPageDropdown Events
+| Event Name          | Description| Params |
+|---------------------|------------|--------|
+|on-update| Called every time the user change the number of items per page | Next items per page number |	
+
 
 
 ## Installation

@@ -10,7 +10,7 @@
       :is-loading="isLoading"
       :css="datatableCss"
       not-found-msg="Items not found"
-      @onUpdate="dtUpdateSort"
+      @on-update="dtUpdateSort"
       track-by="firstName"
     >
      <!-- Action button slot -->
@@ -22,7 +22,7 @@
         value="Edit"
         @click="dtEditClick(props)"
       >
-      <a href="#" slot="actionFirst">Actions 2</a>
+      <a href="#" slot="actionFirst" slot-scope="props" @click.prevent="actionFirstClick(props)">Actions 2</a>
 
       <!-- Pagination component as a slot, but could be drag out from Database element -->
       <Pagination
@@ -31,8 +31,8 @@
         :total-items="totalItems"
         :items-per-page="itemsPerPage"
         :css="paginationCss"
-        @onUpdate="changePage"
-        @updateCurrentPage="updateCurrentPage"
+        @on-update="changePage"
+        @update-current-page="updateCurrentPage"
       />
 
       <!-- ItemsPerPage component as a slot, but could be drag out from Database element -->
@@ -42,7 +42,7 @@
           :list-items-per-page="listItemsPerPage"
           :items-per-page="itemsPerPage"
           :css="itemsPerPageCss"
-          @onUpdate="updateItemsPerPage"
+          @on-update="updateItemsPerPage"
         />
       </div>
 
@@ -531,6 +531,10 @@ export default {
 
     changeHometown: function (event, id) {
       this.data =this.data.map(item => item.id === id ? {...item, hometown: event.target.value }: item)
+    },
+
+    actionFirstClick: (params) => {
+      alert(JSON.stringify(params))
     }
   },
 };
