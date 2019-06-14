@@ -8,8 +8,25 @@
           :class="headerItemClass(item, css.theadTh)"
           :style="getColumnWidth(item)"
           >
-          <div v-if="!isFieldSpecial(item.name)" :class="css.thWrapper" @click="orderBy(item.name)">
+          <div v-if="!isFieldSpecial(item.name) && !item.customHeader" :class="css.thWrapper" @click="orderBy(item.name)">
             {{ item.label }}
+            <div v-if="item.sortable" :class="arrowsWrapper(item.name, css.arrowsWrapper)">
+              <div
+                v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'desc')"
+                :class="css.arrowUp"
+              />
+              <div
+                v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'asc')"
+                :class="css.arrowDown"
+              />
+            </div>
+          </div>
+          <div v-if="!isFieldSpecial(item.name) && item.customHeader" :class="css.thWrapper" @click="orderBy(item.name)">
+            <slot
+              v-if="item.customHeader"
+              :header-data="item"
+              :name="customHeaderName(item)"
+            />
             <div v-if="item.sortable" :class="arrowsWrapper(item.name, css.arrowsWrapper)">
               <div
                 v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'desc')"
@@ -300,7 +317,8 @@ export default {
       }
     },
 
-    customElementName: ({ customElement, name }) => typeof customElement === 'string' ? customElement : name
+    customElementName: ({ customElement, name }) => typeof customElement === 'string' ? customElement : name,
+    customHeaderName: ({ customHeader, name }) => typeof customHeader === 'string' ? customHeader : `${name}:header`
   }
 }
 </script>
