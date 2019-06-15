@@ -24,6 +24,11 @@
       >
       <a href="#" slot="actionFirst" slot-scope="props" @click.prevent="actionFirstClick(props)">Actions 2</a>
 
+      <input type="text" slot="updated:header" value="Custom updated" />
+
+      <span slot="createdHeader">Custom Created</span>
+
+
       <!-- Pagination component as a slot, but could be drag out from Database element -->
       <Pagination
         slot="pagination"
@@ -454,14 +459,15 @@ export default {
         },
         {
           name: "created",
+          customHeader: "createdHeader",
           label: "Created",
           sortable: true,
           format: formatDate
         },
         {
           name: "updated",
-          label: "Updated",
-          sortable: false,
+          customHeader: true,
+          sortable: true,
           format: formatDate
         },
         "__slot:actions:actionFirst",
@@ -530,12 +536,12 @@ export default {
     },
 
     changeHometown: function (event, id) {
-      this.data =this.data.map(item => item.id === id ? {...item, hometown: event.target.value }: item)
+      this.data = this.data.map(item => (item.id === id ? { ...item, hometown: event.target.value } : item))
     },
 
     actionFirstClick: (params) => {
       alert(JSON.stringify(params))
     }
-  },
-};
+  }
+}
 </script>

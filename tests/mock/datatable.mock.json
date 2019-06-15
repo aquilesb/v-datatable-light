@@ -35,10 +35,23 @@
       }
     ]
   },
+  "customHeader": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customHeader": true }
+    ],
+    "data": [
+      {
+        "id": 4,
+        "name": "test"
+      }
+    ]
+  },
   "checkboxes": {
     "headerFields" : [
       { "name": "id", "label": "Indentification" },
       { "name": "name", "customElement": true },
+      { "name": "name_2", "customHeader": true },
       "__slot:checkboxes"
     ],
     "data": [
@@ -52,6 +65,7 @@
     "headerFields" : [
       { "name": "id", "label": "Indentification" },
       { "name": "name", "customElement": true },
+      { "name": "name_2", "customHeader": true },
       "__slot:checkboxes"
     ],
     "data": [
@@ -69,6 +83,7 @@
     "headerFields" : [
       { "name": "id", "label": "Indentification" },
       { "name": "name", "customElement": true },
+      { "name": "name_2", "customHeader": true },
       "__slot:checkboxes"
     ],
     "data": [
@@ -86,6 +101,7 @@
     "headerFields" : [
       { "name": "id", "label": "Indentification" },
       { "name": "name", "customElement": true },
+      { "name": "name_2", "customHeader": true },
       "__slot:actions"
     ],
     "data": [
@@ -99,6 +115,7 @@
     "headerFields" : [
       { "name": "id", "label": "Indentification" },
       { "name": "name", "customElement": true },
+      { "name": "name_2", "customHeader": true },
       "__slot:actions:ActionID",
       "__slot:actions"
     ],

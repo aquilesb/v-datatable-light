@@ -77,18 +77,31 @@ describe('DataTable.vue', () => {
       expect(tds).toHaveLength(2)
       expect(tds.at(1).find('.my-custom-element').html()).toEqual(customElement)
     })
+    it('should render a slot in the column in every row of tbody when the headerField contains customHeader attribute ', () => {
+      const customHeader = '<div class="my-custom-header">Foo</div>'
+      const wrapper = mount(
+        DataTable,
+        {
+          propsData: mock.customHeader,
+          slots: { 'name:header': customHeader }
+        }
+      )
+      const ths = wrapper.findAll('.v-datatable-light thead tr th')
+      expect(ths).toHaveLength(2)
+      expect(ths.at(1).contains('.my-custom-header')).toBe(true)
+    })
 
     it('should render a checkbox in the column in every row of tbody when the headerField contains __slot:checkbox string ', () => {
       const wrapper = mount(DataTable, {
         propsData: mock.checkboxes
       })
       const ths = wrapper.findAll('.v-datatable-light thead tr th')
-      expect(ths).toHaveLength(3)
-      expect(ths.at(2).contains('.th-wrapper-checkboxes .checkbox-header')).toBe(true)
+      expect(ths).toHaveLength(4)
+      expect(ths.at(3).contains('.th-wrapper-checkboxes .checkbox-header')).toBe(true)
 
       const tds = wrapper.findAll('.v-datatable-light tbody tr td')
-      expect(tds).toHaveLength(3)
-      expect(tds.at(2).contains('.checkbox')).toBe(true)
+      expect(tds).toHaveLength(4)
+      expect(tds.at(3).contains('.checkbox')).toBe(true)
     })
 
     it('should render the slot actions in the column in every row of tbody when the headerField contains __slot:actions string ', () => {
@@ -97,12 +110,12 @@ describe('DataTable.vue', () => {
         slots: { actions: '<input type="button" class="action-button"/>' }
       })
       const ths = wrapper.findAll('.v-datatable-light thead tr th')
-      expect(ths).toHaveLength(3)
-      expect(ths.at(2).find('.thead-th').text()).toBe('')
+      expect(ths).toHaveLength(4)
+      expect(ths.at(3).find('.thead-th').text()).toBe('')
 
       const tds = wrapper.findAll('.v-datatable-light tbody tr td')
-      expect(tds).toHaveLength(3)
-      expect(tds.at(2).contains('.action-button')).toBe(true)
+      expect(tds).toHaveLength(4)
+      expect(tds.at(3).contains('.action-button')).toBe(true)
     })
 
     it('should render the slot actions with the specified ID in the column in every row of tbody when the headerField contains __slot:actions:ActionID string ', () => {
@@ -114,14 +127,14 @@ describe('DataTable.vue', () => {
         }
       })
       const ths = wrapper.findAll('.v-datatable-light thead tr th')
-      expect(ths).toHaveLength(4)
-      expect(ths.at(2).find('.thead-th').text()).toBe('')
+      expect(ths).toHaveLength(5)
       expect(ths.at(3).find('.thead-th').text()).toBe('')
+      expect(ths.at(4).find('.thead-th').text()).toBe('')
 
       const tds = wrapper.findAll('.v-datatable-light tbody tr td')
-      expect(tds).toHaveLength(4)
-      expect(tds.at(2).contains('.my-link')).toBe(true)
-      expect(tds.at(3).contains('.action-button')).toBe(true)
+      expect(tds).toHaveLength(5)
+      expect(tds.at(3).contains('.my-link')).toBe(true)
+      expect(tds.at(4).contains('.action-button')).toBe(true)
     })
 
     it('should render the slot spinner when the isLoading attribute is true ', () => {
@@ -288,9 +301,9 @@ describe('DataTable.vue', () => {
     it('should set itemsChecked to the data size or 0 when checkbox header is clicked', () => {
       const wrapper = mount(DataTable, { propsData: mock.checkboxes })
       const ths = wrapper.findAll('.v-datatable-light thead tr th')
-      expect(ths).toHaveLength(3)
+      expect(ths).toHaveLength(4)
 
-      const checkboxHeader = ths.at(2).find('.th-wrapper-checkboxes .checkbox-header')
+      const checkboxHeader = ths.at(3).find('.th-wrapper-checkboxes .checkbox-header')
       expect(checkboxHeader.exists()).toBe(true)
       checkboxHeader.trigger('click')
       expect(wrapper.vm.itemsChecked).toHaveLength(mock.checkboxes.data.length)
@@ -304,18 +317,18 @@ describe('DataTable.vue', () => {
       expect(trs).toHaveLength(2)
 
       const tds1 = trs.at(0).findAll('td')
-      expect(tds1).toHaveLength(3)
+      expect(tds1).toHaveLength(4)
 
-      const checkbox = tds1.at(2).findAll('input')
+      const checkbox = tds1.at(3).findAll('input')
       expect(checkbox).toHaveLength(1)
       checkbox.at(0).trigger('click')
 
       expect(wrapper.vm.itemsChecked).toHaveLength(1)
 
       const tds2 = trs.at(1).findAll('td')
-      expect(tds2).toHaveLength(3)
+      expect(tds2).toHaveLength(4)
 
-      const checkbox2 = tds2.at(2).findAll('input')
+      const checkbox2 = tds2.at(3).findAll('input')
       expect(checkbox2).toHaveLength(1)
       checkbox2.at(0).trigger('click')
 
@@ -328,9 +341,9 @@ describe('DataTable.vue', () => {
       expect(trs).toHaveLength(2)
 
       const tds1 = trs.at(0).findAll('td')
-      expect(tds1).toHaveLength(3)
+      expect(tds1).toHaveLength(4)
 
-      const checkbox = tds1.at(2).findAll('input')
+      const checkbox = tds1.at(3).findAll('input')
       expect(checkbox).toHaveLength(1)
       checkbox.at(0).trigger('click')
 
@@ -356,9 +369,9 @@ describe('DataTable.vue', () => {
     it("should emmit onCheckAll event when user click on theader's checkbox", () => {
       const wrapper = mount(DataTable, { propsData: mock.checkboxesSelect })
       const ths = wrapper.findAll('.v-datatable-light thead tr th')
-      expect(ths).toHaveLength(3)
+      expect(ths).toHaveLength(4)
 
-      const checkboxHeader = ths.at(2).find('.th-wrapper-checkboxes .checkbox-header')
+      const checkboxHeader = ths.at(3).find('.th-wrapper-checkboxes .checkbox-header')
       expect(checkboxHeader.exists()).toBe(true)
       checkboxHeader.trigger('click')
 
@@ -373,9 +386,9 @@ describe('DataTable.vue', () => {
       expect(trs).toHaveLength(2)
 
       const tds1 = trs.at(0).findAll('td')
-      expect(tds1).toHaveLength(3)
+      expect(tds1).toHaveLength(4)
 
-      const checkbox = tds1.at(2).findAll('input')
+      const checkbox = tds1.at(3).findAll('input')
       expect(checkbox).toHaveLength(1)
       checkbox.at(0).trigger('click')
       checkbox.at(0).trigger('click')
