@@ -11,14 +11,8 @@
           <div v-if="!isFieldSpecial(item.name) && !item.customHeader" :class="css.thWrapper" @click="orderBy(item.name)">
             {{ item.label }}
             <div v-if="item.sortable" :class="arrowsWrapper(item.name, css.arrowsWrapper)">
-              <div
-                v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'desc')"
-                :class="css.arrowUp"
-              />
-              <div
-                v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'asc')"
-                :class="css.arrowDown"
-              />
+              <div v-if="showOrderArrow(item, 'desc')" :class="css.arrowUp" />
+              <div v-if="showOrderArrow(item, 'asc')" :class="css.arrowDown" />
             </div>
           </div>
           <div v-if="!isFieldSpecial(item.name) && item.customHeader" :class="css.thWrapper" @click="orderBy(item.name)">
@@ -28,14 +22,8 @@
               :name="customHeaderName(item)"
             />
             <div v-if="item.sortable" :class="arrowsWrapper(item.name, css.arrowsWrapper)">
-              <div
-                v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'desc')"
-                :class="css.arrowUp"
-              />
-              <div
-                v-if="(sortedField !== item.name) || (sortedField === item.name && sortedDir === 'asc')"
-                :class="css.arrowDown"
-              />
+              <div v-if="showOrderArrow(item, 'desc')" :class="css.arrowUp" />
+              <div v-if="showOrderArrow(item, 'asc')" :class="css.arrowDown" />
             </div>
           </div>
           <div
@@ -177,6 +165,10 @@ export default {
     defaultColumnWidth: {
       type: String,
       default: '150px'
+    },
+    onlyShowOrderedArrow: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -318,7 +310,15 @@ export default {
     },
 
     customElementName: ({ customElement, name }) => typeof customElement === 'string' ? customElement : name,
-    customHeaderName: ({ customHeader, name }) => typeof customHeader === 'string' ? customHeader : `${name}:header`
+
+    customHeaderName: ({ customHeader, name }) => typeof customHeader === 'string' ? customHeader : `${name}:header`,
+
+    showOrderArrow: function (item, sortDir) {
+      if (this.onlyShowOrderedArrow) {
+        return this.sortedField === item.name && this.sortedDir !== sortDir
+      }
+      return (this.sortedField !== item.name) || (this.sortedField === item.name && this.sortedDir === sortDir)
+    }
   }
 }
 </script>
