@@ -43,8 +43,8 @@ export default {
 | trackBy            | string  | false    | 'id'    | An unique id column used for checkbox column type to compare if a field is checked or not.                     |
 | css                | object  | false    | [Structure](#datatable-css-props-structure) | An object with attributes used to add css classes to DataTable internal elements.|
 | tableHeight        | string  | false    | null    | Used to have fixed header in  the table.                                                                       |
-| defaultColumnWidth | string  | false    | '150px' | Set the default column with, only used when 'tableHeight' prop is informed.                                    |
-
+| defaultColumnWidth | string  | false    | '150px' | Set the default column with, only used when 'tableHeight' prop is informed.|
+| onlyShowOrderedArrow | boolean  | false    | false | When is `true` will only show the sorted column's current direction arrow.|
 
 ## DataTable Events
 | Event Name          | Description| Params |
