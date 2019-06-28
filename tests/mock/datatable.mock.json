@@ -223,5 +223,55 @@
       }
     ],
     "tableHeight": "400px"
+  },
+  "onlyShowOrderedArrow": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "firstName", "label": "First Name", "sortable": true },
+      { "name": "lastName", "label": "Last Name", "sortable": true },
+      { "name": "city", "label": "City", "sortable": true }
+    ],
+    "sort": "asc",
+    "sortField": "firstName",
+    "onlyShowOrderedArrow": true,
+    "data": [
+      {
+        "id": 47,
+        "firstName": "John",
+        "lastName": "Malven",
+        "city": "Sydney"
+      },
+      {
+        "id": 39,
+        "firstName": "Ollie",
+        "lastName": "Wellington",
+        "city": "Melbourne"
+      }
+    ]
+  },
+  "onlyShowOrderedArrowLastName": {
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "firstName", "label": "First Name", "sortable": true },
+      { "name": "lastName", "label": "Last Name", "sortable": true },
+      { "name": "city", "label": "City", "sortable": true }
+    ],
+    "sort": "desc",
+    "sortField": "lastName",
+    "onlyShowOrderedArrow": true,
+    "data": [
+      {
+        "id": 47,
+        "firstName": "John",
+        "lastName": "Malven",
+        "city": "Sydney"
+      },
+      {
+        "id": 39,
+        "firstName": "Ollie",
+        "lastName": "Wellington",
+        "city": "Melbourne"
+      }
+    ]
   }
 }

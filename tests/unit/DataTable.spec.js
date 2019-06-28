@@ -399,5 +399,71 @@ describe('DataTable.vue', () => {
       expect(emitted['on-unchecked-item']).toBeTruthy()
       expect(emitted['on-unchecked-item']).toEqual([[mock.checkboxesSelect.data[0]]])
     })
+
+    it('should exist just sorted arrow on firstName column when onlyShowOrderedArrow is true and sortedField is firstColumn', () => {
+      const wrapper = mount(DataTable, { propsData: mock.onlyShowOrderedArrow })
+      const ths = wrapper.findAll('.v-datatable-light thead tr th')
+      expect(ths).toHaveLength(4)
+
+      // returns nothing because it is not sortable
+      const arrow1 = ths.at(0).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrow1).toHaveLength(0)
+
+      const arrow2Wrapper = ths.at(1).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrow2Wrapper).toHaveLength(1)
+      const arrowUp2 = arrow2Wrapper.at(0).findAll('.arrow-up')
+      const arrowDown2 = arrow2Wrapper.at(0).findAll('.arrow-down')
+      expect(arrowUp2).toHaveLength(1)
+      expect(arrowDown2).toHaveLength(0)
+
+      const arrowsWrapper3 = ths.at(2).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrowsWrapper3).toHaveLength(1)
+
+      const arrowUp3 = arrowsWrapper3.at(0).findAll('.arrow-up')
+      const arrowDown3 = arrowsWrapper3.at(0).findAll('.arrow-down')
+      expect(arrowUp3).toHaveLength(0)
+      expect(arrowDown3).toHaveLength(0)
+
+      const arrowsWrapper4 = ths.at(3).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrowsWrapper4).toHaveLength(1)
+
+      const arrowUp4 = arrowsWrapper4.at(0).findAll('.arrow-up')
+      const arrowDown4 = arrowsWrapper4.at(0).findAll('.arrow-down')
+      expect(arrowUp4).toHaveLength(0)
+      expect(arrowDown4).toHaveLength(0)
+    })
+
+    it('should exist just sorted arrow on lastName column when onlyShowOrderedArrow is true and sortedField is lastColumn', () => {
+      const wrapper = mount(DataTable, { propsData: mock.onlyShowOrderedArrowLastName })
+      const ths = wrapper.findAll('.v-datatable-light thead tr th')
+      expect(ths).toHaveLength(4)
+
+      // returns nothing because it is not sortable
+      const arrow1 = ths.at(0).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrow1).toHaveLength(0)
+
+      const arrow2Wrapper = ths.at(1).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrow2Wrapper).toHaveLength(1)
+      const arrowUp2 = arrow2Wrapper.at(0).findAll('.arrow-up')
+      const arrowDown2 = arrow2Wrapper.at(0).findAll('.arrow-down')
+      expect(arrowUp2).toHaveLength(0)
+      expect(arrowDown2).toHaveLength(0)
+
+      const arrowsWrapper3 = ths.at(2).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrowsWrapper3).toHaveLength(1)
+
+      const arrowUp3 = arrowsWrapper3.at(0).findAll('.arrow-up')
+      const arrowDown3 = arrowsWrapper3.at(0).findAll('.arrow-down')
+      expect(arrowUp3).toHaveLength(0)
+      expect(arrowDown3).toHaveLength(1)
+
+      const arrowsWrapper4 = ths.at(3).findAll('.th-wrapper .arrows-wrapper')
+      expect(arrowsWrapper4).toHaveLength(1)
+
+      const arrowUp4 = arrowsWrapper4.at(0).findAll('.arrow-up')
+      const arrowDown4 = arrowsWrapper4.at(0).findAll('.arrow-down')
+      expect(arrowUp4).toHaveLength(0)
+      expect(arrowDown4).toHaveLength(0)
+    })
   })
 })
