@@ -287,7 +287,7 @@ export default {
       return foundHeader && foundHeader.sortable
     },
 
-    headerItemClass: function (item, className) {
+    headerItemClass: function (item, className = '') {
       return item && item.sortable ? className : `${className} no-sortable`
     },
 
