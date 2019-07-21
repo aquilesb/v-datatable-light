@@ -1,9 +1,37 @@
 
 # v-datatable-light
+
+A lightweight, simple and easy data table for Vue.
+
 [![Build Status](https://travis-ci.org/aquilesb/v-datatable-light.svg?branch=master)](https://travis-ci.org/aquilesb/v-datatable-light)
 [![GitHub open issues](https://img.shields.io/github/issues/aquilesb/v-datatable-light.svg)](https://github.com/aquilesb/v-datatable-light/issues)
 [![Npm version](https://img.shields.io/npm/v/v-datatable-light.svg)](https://www.npmjs.com/package/v-datatable-light)
 ![GitHub](https://img.shields.io/github/license/aquilesb/v-datatable-light.svg)
+
+<br />
+<br />
+
+## Features
+
+- Lightweight
+- Provide a Pagination component
+- Provide a Items-per-page component
+- No dependencies
+- Event driven (all the events will be emitted to you, and you will decide how to react to them)
+- Css flexible (is possible to add classes to almost all elements generated)
+- Order by events
+- Fix header possibility
+- Custom columns
+- Custom headers
+- Row selection
+
+## Demos
+[CodePen](https://codepen.io/aquilesb/pen/wVaBPv) using almost all features
+<br/>
+[CodeSandbox](https://codesandbox.io/s/o5qlyw3l26) using almost all features
+<br/>
+[CodeSandbox 2](https://codesandbox.io/s/k0l3nrq9x3)
+<br/>
 
 ## Install
 Using `npm`
@@ -26,9 +54,6 @@ export default {
   }
 }
 ```
-## [Demo Sandbox](https://codesandbox.io/s/o5qlyw3l26)
-## [Demo Sandbox 2](https://codesandbox.io/s/k0l3nrq9x3)
-
 
 
 ## DataTable Props
