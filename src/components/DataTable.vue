@@ -76,8 +76,8 @@
               :row-index="index"
               :name="customElementName(key)"
             />
-            <template v-else-if="key.format">{{ key.format(item[key.name]) }}</template>
-            <template v-else>{{ item[key.name] }}</template>
+            <div v-else-if="key.format" v-html="key.format(item[key.name])"></div>
+            <div v-else v-html="item[key.name]"></div>
           </td>
         </tr>
       </template>
