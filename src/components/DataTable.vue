@@ -3,19 +3,22 @@
     <thead :class="css.thead" :style="theadStyle">
       <tr :class="css.theadTr">
         <th
-          v-for="item in headers"
+          v-for="(item, columnIndex) in headers"
           :key="item.label"
-          :class="headerItemClass(item, css.theadTh)"
+          :class="[css.theadTh, `header-column-${columnIndex}`]"
           :style="getColumnWidth(item)"
           >
-          <div v-if="!isFieldSpecial(item.name) && !item.customHeader" :class="css.thWrapper" @click="orderBy(item.name)">
+          <!-- header free text -->
+          <div v-if="!isFieldSpecial(item.name) && !item.customHeader" :class="[css.thWrapper, `header-column-${columnIndex}`]" @click="orderBy(item.name)">
             {{ item.label }}
             <div v-if="item.sortable" :class="arrowsWrapper(item.name, css.arrowsWrapper)">
               <div v-if="showOrderArrow(item, 'desc')" :class="css.arrowUp" />
               <div v-if="showOrderArrow(item, 'asc')" :class="css.arrowDown" />
             </div>
           </div>
-          <div v-if="!isFieldSpecial(item.name) && item.customHeader" :class="css.thWrapper" @click="orderBy(item.name)">
+          <!-- end header free text -->
+          <!-- header custom header -->
+          <div v-if="!isFieldSpecial(item.name) && item.customHeader" :class="[css.thWrapper, `header-column-${columnIndex}`]" @click="orderBy(item.name)">
             <slot
               v-if="item.customHeader"
               :header-data="item"
@@ -26,6 +29,8 @@
               <div v-if="showOrderArrow(item, 'asc')" :class="css.arrowDown" />
             </div>
           </div>
+          <!-- end header custom header -->
+          <!-- especial field -->
           <div
             v-if="isFieldSpecial(item.name) && extractArgs(item.name) === 'checkboxes'"
             :class="css.thWrapperCheckboxes"
@@ -37,10 +42,12 @@
               @click="checkAll"
             >
           </div>
+          <!-- end especial field -->
         </th>
       </tr>
     </thead>
     <tbody :class="css.tbody" :style="tbodyStyle">
+      <!-- spinner slot -->
       <template v-if="isLoading">
         <tr :class="css.tbodyTrSpinner">
           <td :colspan="headers.length" :class="css.tbodyTdSpinner">
@@ -48,12 +55,14 @@
           </td>
         </tr>
       </template>
+      <!-- end spinner slot -->
+      <!-- table rows -->
       <template v-else-if="data.length">
-        <tr v-for="(item, index) in data" :key="index" :class="css.tbodyTr">
+        <tr v-for="(item, index) in data" :key="index" :class="[css.tbodyTr, `row-${index}`]">
           <td
-            v-for="key in headers"
+            v-for="(key, columnIndex) in headers"
             :key="`${index}-${key.name}`"
-            :class="css.tbodyTd"
+            :class="[css.tbodyTd, `column-${columnIndex}`]"
             :style="getColumnWidth(key)">
             <slot
               v-if="isFieldSpecial(key.name) && extractArgs(key.name) === 'actions'"
@@ -81,11 +90,14 @@
           </td>
         </tr>
       </template>
+      <!-- end table rows -->
+      <!-- table not found row -->
       <template v-else>
         <tr :class="css.notFoundTr">
           <td :colspan="headers.length" :class="css.notFoundTd">{{ notFoundMessage }}</td>
         </tr>
       </template>
+      <!-- end table not found row -->
     </tbody>
     <tfoot v-if="hasSlots" :class="css.tfoot">
       <tr :class="css.tfootTr">
