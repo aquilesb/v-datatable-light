@@ -282,6 +282,44 @@ describe('DataTable.vue', () => {
       expect(tds).toHaveLength(2)
       expect(tds.at(1).attributes('style')).toBe('width: 100px;')
     })
+    it('should render the th class for each column', () => {
+      const wrapper = mount(DataTable, { propsData: mock.rowsCss })
+
+      const ths = wrapper.findAll('.v-datatable-light thead tr th')
+      expect(ths).toHaveLength(3)
+
+      const firstThClass = ths.at(0).find('.header-column-0')
+      expect(firstThClass.exists()).toBe(true)
+
+      const secondThClass = ths.at(1).find('.header-column-1')
+      expect(secondThClass.exists()).toBe(true)
+
+      const thirdThClass = ths.at(2).find('.header-column-2')
+      expect(thirdThClass.exists()).toBe(true)
+    })
+
+    it('should render the tr class for each line', () => {
+      const wrapper = mount(DataTable, { propsData: mock.rowsCss })
+
+      const trs = wrapper.findAll('.v-datatable-light tbody tr.row-0')
+      expect(trs).toHaveLength(1)
+
+      const tds = trs.at(0).findAll('td')
+      expect(tds).toHaveLength(3)
+    })
+
+    it('should render the tbody td class for each column using the column index to create the class name', () => {
+      const wrapper = mount(DataTable, { propsData: mock.rowsCss })
+
+      const tds = wrapper.findAll('.v-datatable-light tbody tr.row-0 td')
+      expect(tds).toHaveLength(3)
+
+      const firstTdColumn = tds.at(1).find('.column-1')
+      expect(firstTdColumn.exists()).toBe(true)
+
+      const secondTdColumn = tds.at(2).find('.column-2')
+      expect(secondTdColumn.exists()).toBe(true)
+    })
   })
 
   describe('Internal iteractions tests', () => {
@@ -400,7 +438,7 @@ describe('DataTable.vue', () => {
       expect(emitted['on-unchecked-item']).toEqual([[mock.checkboxesSelect.data[0]]])
     })
 
-    it('should exist just sorted arrow on firstName column when onlyShowOrderedArrow is true and sortedField is firstColumn', () => {
+    it('should only exist sorted arrow in firstName column when onlyShowOrderedArrow is true and sortedField is firstColumn', () => {
       const wrapper = mount(DataTable, { propsData: mock.onlyShowOrderedArrow })
       const ths = wrapper.findAll('.v-datatable-light thead tr th')
       expect(ths).toHaveLength(4)
@@ -433,7 +471,7 @@ describe('DataTable.vue', () => {
       expect(arrowDown4).toHaveLength(0)
     })
 
-    it('should exist just sorted arrow on lastName column when onlyShowOrderedArrow is true and sortedField is lastColumn', () => {
+    it('should only exist sorted arrow in lastName column when onlyShowOrderedArrow is true and sortedField is lastColumn', () => {
       const wrapper = mount(DataTable, { propsData: mock.onlyShowOrderedArrowLastName })
       const ths = wrapper.findAll('.v-datatable-light thead tr th')
       expect(ths).toHaveLength(4)

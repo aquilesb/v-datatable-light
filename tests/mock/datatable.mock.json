@@ -47,6 +47,21 @@
       }
     ]
   },
+  "rowsCss": {
+    "rowsCss":["row-1", "row-test"],
+    "headerFields" : [
+      { "name": "id", "label": "Indentification" },
+      { "name": "name", "customHeader": true },
+      { "name": "city", "label": "City" }
+    ],
+    "data": [
+      {
+        "id": 5,
+        "name": "Lucca",
+        "city": "Perth"
+      }
+    ]
+  },
   "checkboxes": {
     "headerFields" : [
       { "name": "id", "label": "Indentification" },
