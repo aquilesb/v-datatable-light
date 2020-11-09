@@ -5,7 +5,7 @@
         <th
           v-for="(item, columnIndex) in headers"
           :key="item.label"
-          :class="[css.theadTh, `header-column-${columnIndex}`]"
+          :class="headerItemClass(item, [css.theadTh, `header-column-${columnIndex}`])"
           :style="getColumnWidth(item)"
           >
           <!-- header free text -->
@@ -299,8 +299,9 @@ export default {
       return foundHeader && foundHeader.sortable
     },
 
-    headerItemClass: function (item, className = '') {
-      return item && item.sortable ? className : `${className} no-sortable`
+    headerItemClass: function (item, className = []) {
+      const classes = className.join(' ')
+      return item && item.sortable ? classes : `${classes} no-sortable`
     },
 
     isFieldSpecial: field => field.indexOf('__') > -1,
