@@ -525,6 +525,7 @@ export default {
       datatableCss: {
         table: 'table table-bordered table-hover table-striped table-center',
         theadTr: 'header-item',
+        theadTh: 'custom-thead-th',
         thWrapper: 'th-wrapper',
         thWrapperCheckboxes: 'th-wrapper checkboxes',
         arrowsWrapper: 'arrows-wrapper',

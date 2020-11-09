@@ -447,6 +447,9 @@ describe('DataTable.vue', () => {
       const arrow1 = ths.at(0).findAll('.th-wrapper .arrows-wrapper')
       expect(arrow1).toHaveLength(0)
 
+      const noSortable = ths.at(0).classes()
+      expect(noSortable).toContain('no-sortable')
+      
       const arrow2Wrapper = ths.at(1).findAll('.th-wrapper .arrows-wrapper')
       expect(arrow2Wrapper).toHaveLength(1)
       const arrowUp2 = arrow2Wrapper.at(0).findAll('.arrow-up')
